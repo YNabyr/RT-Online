@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
-class HeaderBeranda extends StatelessWidget {
-  const HeaderBeranda({
+class HeaderDataWarga extends StatelessWidget {
+  const HeaderDataWarga({
     Key? key,
     required this.text,
     this.prefixIcon,

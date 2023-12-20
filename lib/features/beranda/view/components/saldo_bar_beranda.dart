@@ -11,11 +11,13 @@ class SaldoBarBeranda extends StatelessWidget {
     this.onTap,
     this.amount,
     this.jumlahRumah,
+    this.onTapRumah,
   }) : super(key: key);
 
   final void Function()? onTap;
   final int? amount;
   final int? jumlahRumah;
+  final void Function()? onTapRumah;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +89,7 @@ class SaldoBarBeranda extends StatelessWidget {
                           colors: [
                             Color(0xFF6EE2F5),
                             Color(0xFF6454F0),
-                          ], // Sesuaikan dengan warna yang diinginkan
+                          ],
                         ),
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -140,11 +142,14 @@ class SaldoBarBeranda extends StatelessWidget {
                   ),
 
                   // Jumlah Rumah
-                  Text(
-                    jumlahRumah.toString(),
-                    style: PoppinsTextStyle.fw600.copyWith(
-                      color: const Color(0xFF0B0C0D),
-                      fontSize: 20.sp,
+                  InkWell(
+                    onTap: onTapRumah,
+                    child: Text(
+                      jumlahRumah.toString(),
+                      style: PoppinsTextStyle.fw600.copyWith(
+                        color: const Color(0xFF0B0C0D),
+                        fontSize: 20.sp,
+                      ),
                     ),
                   )
                 ],

@@ -72,6 +72,9 @@ class BerandaScreen extends StatelessWidget {
                             onTap: () {
                               Get.toNamed(Routes.previewSaldoKas);
                             },
+                            onTapRumah: () {
+                              Get.toNamed(Routes.dataWargaRoute);
+                            },
                           ),
                         ),
                       ),

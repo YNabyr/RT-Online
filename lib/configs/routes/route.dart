@@ -4,6 +4,7 @@ abstract class Routes {
   static const String loginRoute = '/login';
   static const String dashboardRoute = '/dashboard';
   static const String dataWargaRoute = '/data_warga';
+  static const String dataWargaEmptyRoute = '/data_warga_empty';
   static const String informasiRoute = '/informasi';
   static const String profileRoute = '/profile';
   static const String invitationRoute = '/invitation';

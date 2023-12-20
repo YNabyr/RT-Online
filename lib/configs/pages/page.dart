@@ -11,6 +11,9 @@ import 'package:venturo_core/features/beranda/view/ui/beranda_screen.dart';
 import 'package:venturo_core/features/beranda/view/ui/preview_saldo_kas_screen.dart';
 import 'package:venturo_core/features/dashboard/bindings/dashboard_binding.dart';
 import 'package:venturo_core/features/dashboard/view/ui/dashboard_screen.dart';
+import 'package:venturo_core/features/data_warga/bindings/data_warga_binding.dart';
+import 'package:venturo_core/features/data_warga/view/ui/data_warga_empty_screen.dart';
+import 'package:venturo_core/features/data_warga/view/ui/data_warga_screen.dart';
 import 'package:venturo_core/features/splash/bindings/splash_binding.dart';
 import 'package:venturo_core/features/splash/view/ui/splash_screen.dart';
 
@@ -68,5 +71,15 @@ abstract class Pages {
         name: Routes.previewSaldoKas,
         page: () => const PreviewSaldoKasScreen(),
         binding: BerandaBinding()),
+    // Preview saldo kas
+    GetPage(
+        name: Routes.dataWargaRoute,
+        page: () => DataWargaScreen(),
+        binding: DataWargaBinding()),
+    // Preview saldo kas
+    GetPage(
+        name: Routes.dataWargaEmptyRoute,
+        page: () => const DataWargaEmptyScreen(),
+        binding: DataWargaBinding()),
   ];
 }

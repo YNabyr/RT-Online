@@ -93,6 +93,13 @@ flutter:
     - assets/images/ic_iuran.png
     - assets/images/ic_struktur.png
     - assets/images/ic_tertib.png
+    - assets/images/ic_whatsapp.png
+    - assets/images/empty.png
+    - assets/images/empty_tata_tertib.png
+    - assets/images/empty_struktur.png
+    - assets/images/empty_iuran.png
+    - assets/images/empty_informasi.png
+    - assets/images/empty_data_warga.png
 
 
 
