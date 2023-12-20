@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:venturo_core/configs/routes/route.dart';
 
 import 'package:venturo_core/features/beranda/constants/beranda_assets_constant.dart';
 import 'package:venturo_core/features/beranda/view/components/alert_iuran_beranda.dart';
@@ -67,7 +69,9 @@ class BerandaScreen extends StatelessWidget {
                           child: SaldoBarBeranda(
                             amount: 10000000,
                             jumlahRumah: 50,
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.previewSaldoKas);
+                            },
                           ),
                         ),
                       ),

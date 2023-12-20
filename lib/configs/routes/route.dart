@@ -11,7 +11,8 @@ abstract class Routes {
   static const String lupaPasswordVerificationRoute =
       '/lupa_password_verification';
   static const String passwordBaruRoute = '/password_baru';
-static const String iuranWargaRoute = '/iuran_warga';
-static const String strukturRtRoute = '/struktur_rt';
-static const String berandaRoute = '/beranda';
+  static const String iuranWargaRoute = '/iuran_warga';
+  static const String strukturRtRoute = '/struktur_rt';
+  static const String berandaRoute = '/beranda';
+  static const String previewSaldoKas = '/preview_saldo_kas';
 }
