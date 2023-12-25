@@ -46,6 +46,7 @@ dependencies:
   intl: ^0.19.0
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
+  flutter_svg: ^2.0.9
 
 
 dev_dependencies:
@@ -100,6 +101,21 @@ flutter:
     - assets/images/empty_iuran.png
     - assets/images/empty_informasi.png
     - assets/images/empty_data_warga.png
+    - assets/images/ic_arrow_ios_down.png
+    - assets/images/ic_arrow_ios_up.png
+    - assets/images/ic_arrow_ios_right.png
+    - assets/images/ic_arrow_ios_left.png
+    - assets/images/ic_calendar.png
+    - assets/images/ic_camera_fill.png
+    - assets/images/ic_edit.png
+    - assets/images/ic_image.png
+    - assets/images/ic_file_text_fill.png
+    - assets/images/ic_person_fill.png
+    - assets/images/ic_unlock_fill.png
+    - assets/images/camera.svg
+    - assets/images/file_text.svg
+  
+
 
 
 
