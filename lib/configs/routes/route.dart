@@ -7,6 +7,8 @@ abstract class Routes {
   static const String dataWargaEmptyRoute = '/data_warga_empty';
   static const String informasiRoute = '/informasi';
   static const String profileRoute = '/profile';
+  static const String profileEditRoute = '/profile_edit';
+  static const String ubahPasswordRoute = '/ubah_password';
   static const String invitationRoute = '/invitation';
   static const String lupaPasswordRoute = '/lupa_password';
   static const String lupaPasswordVerificationRoute =

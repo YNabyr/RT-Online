@@ -14,6 +14,10 @@ import 'package:venturo_core/features/dashboard/view/ui/dashboard_screen.dart';
 import 'package:venturo_core/features/data_warga/bindings/data_warga_binding.dart';
 import 'package:venturo_core/features/data_warga/view/ui/data_warga_empty_screen.dart';
 import 'package:venturo_core/features/data_warga/view/ui/data_warga_screen.dart';
+import 'package:venturo_core/features/profile/bindings/profile_binding.dart';
+import 'package:venturo_core/features/profile/view/ui/edit_profile_screen.dart';
+import 'package:venturo_core/features/profile/view/ui/profile_screen.dart';
+import 'package:venturo_core/features/profile/view/ui/ubah_password_screen.dart';
 import 'package:venturo_core/features/splash/bindings/splash_binding.dart';
 import 'package:venturo_core/features/splash/view/ui/splash_screen.dart';
 
@@ -71,15 +75,35 @@ abstract class Pages {
         name: Routes.previewSaldoKas,
         page: () => const PreviewSaldoKasScreen(),
         binding: BerandaBinding()),
-    // Preview saldo kas
+
+    // data Warga
     GetPage(
         name: Routes.dataWargaRoute,
         page: () => DataWargaScreen(),
         binding: DataWargaBinding()),
-    // Preview saldo kas
+
+    // data Warga Empty
     GetPage(
         name: Routes.dataWargaEmptyRoute,
         page: () => const DataWargaEmptyScreen(),
         binding: DataWargaBinding()),
+
+    // Profile
+    GetPage(
+        name: Routes.profileRoute,
+        page: () => ProfileScreen(),
+        binding: ProfileBinding()),
+
+    // Profile Edit
+    GetPage(
+        name: Routes.profileEditRoute,
+        page: () => const EditProfileScreen(),
+        binding: ProfileBinding()),
+
+    // Ubah Password
+    GetPage(
+        name: Routes.ubahPasswordRoute,
+        page: () => const UbahPasswordScreen(),
+        binding: ProfileBinding()),
   ];
 }
