@@ -56,8 +56,12 @@ class BerandaScreen extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.only(top: 24.h),
                           child: ProfileBarBeranda(
-                            iconPressed: () {},
-                            onTapProfile: () {},
+                            iconPressed: () {
+                              Get.toNamed(Routes.profileRoute);
+                            },
+                            onTapProfile: () {
+                              Get.toNamed(Routes.profileRoute);
+                            },
                           ),
                         ),
                       ),

@@ -142,7 +142,7 @@ class SaldoBarBeranda extends StatelessWidget {
                   ),
 
                   // Jumlah Rumah
-                  InkWell(
+                  GestureDetector(
                     onTap: onTapRumah,
                     child: Text(
                       jumlahRumah.toString(),
