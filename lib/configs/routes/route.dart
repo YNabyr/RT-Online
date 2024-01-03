@@ -18,4 +18,6 @@ abstract class Routes {
   static const String strukturRtRoute = '/struktur_rt';
   static const String berandaRoute = '/beranda';
   static const String previewSaldoKas = '/preview_saldo_kas';
+  static const String detailPengumumanRoute = '/detail_pengumuman';
+  static const String detailBannerRoute = '/detail_banner';
 }

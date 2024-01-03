@@ -14,6 +14,8 @@ import 'package:venturo_core/features/dashboard/view/ui/dashboard_screen.dart';
 import 'package:venturo_core/features/data_warga/bindings/data_warga_binding.dart';
 import 'package:venturo_core/features/data_warga/view/ui/data_warga_empty_screen.dart';
 import 'package:venturo_core/features/data_warga/view/ui/data_warga_screen.dart';
+import 'package:venturo_core/features/pengumuman_banner/bindings/detail_banner_binding.dart';
+import 'package:venturo_core/features/pengumuman_banner/view/ui/detail_banner_screen.dart';
 import 'package:venturo_core/features/profile/bindings/profile_binding.dart';
 import 'package:venturo_core/features/profile/view/ui/edit_profile_screen.dart';
 import 'package:venturo_core/features/profile/view/ui/profile_screen.dart';
@@ -105,5 +107,12 @@ abstract class Pages {
         name: Routes.ubahPasswordRoute,
         page: () => const UbahPasswordScreen(),
         binding: ProfileBinding()),
+
+// Banner
+    GetPage(
+      name: Routes.detailBannerRoute,
+      page: () => const DetailBannerScreen(),
+      binding: DetailBannerBinding(),
+    ),
   ];
 }
