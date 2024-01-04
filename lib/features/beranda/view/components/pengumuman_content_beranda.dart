@@ -1,7 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
+import 'package:venturo_core/features/pengumuman_banner/view/components/detail_pengumuman.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class PengumumanContentBeranda extends StatelessWidget {
@@ -9,14 +9,29 @@ class PengumumanContentBeranda extends StatelessWidget {
     Key? key,
     this.isPinned = false,
     this.isLast = false,
+    required this.title,
+    required this.date,
+    required this.content,
   }) : super(key: key);
 
   final bool isPinned;
   final bool isLast;
+  final String title;
+  final String date;
+  final String content;
+
+  void _navigateToDetailPage() {
+    Get.to(() => PengumumanDetail(
+          title: title,
+          date: date,
+          content: content,
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: _navigateToDetailPage,
       child: Container(
         margin: (isLast == false)
             ? EdgeInsets.symmetric(vertical: 7.5.w)
@@ -51,11 +66,11 @@ class PengumumanContentBeranda extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // News Header
+                    // News Title
                     SizedBox(
                       width: 217.w,
                       child: Text(
-                        'Berita Duka',
+                        title,
                         style: NunitoTextStyle.fw700.copyWith(
                           color: const Color(0xFF0B0C0D),
                           fontSize: 16.sp,
@@ -75,7 +90,7 @@ class PengumumanContentBeranda extends StatelessWidget {
 
                     // Date Text
                     Text(
-                      '10 Okt 2023',
+                      date,
                       style: NunitoTextStyle.fw800.copyWith(
                         color: const Color(0xFF0B0C0D),
                         fontSize: 13.sp,
@@ -90,7 +105,7 @@ class PengumumanContentBeranda extends StatelessWidget {
                 width: 334.w,
                 height: 54.w,
                 child: Text(
-                  'Di beritahukan kepada warga komplek Griya Shanta. Telah Meninggal dunia saudara kita yang bernama Ahmadi Ahmad, Pukul 13:00',
+                  content,
                   textAlign: TextAlign.start,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,

@@ -108,11 +108,13 @@ abstract class Pages {
         page: () => const UbahPasswordScreen(),
         binding: ProfileBinding()),
 
-// Banner
+    // Banner Detail
     GetPage(
       name: Routes.detailBannerRoute,
       page: () => const DetailBannerScreen(),
       binding: DetailBannerBinding(),
     ),
+
+    // Pengumuman Detail
   ];
 }
