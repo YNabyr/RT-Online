@@ -15,6 +15,7 @@ import 'package:venturo_core/features/data_warga/bindings/data_warga_binding.dar
 import 'package:venturo_core/features/data_warga/view/ui/data_warga_empty_screen.dart';
 import 'package:venturo_core/features/data_warga/view/ui/data_warga_screen.dart';
 import 'package:venturo_core/features/pengumuman_banner/bindings/detail_banner_binding.dart';
+import 'package:venturo_core/features/pengumuman_banner/view/components/detail_pengumuman.dart';
 import 'package:venturo_core/features/pengumuman_banner/view/ui/detail_banner_screen.dart';
 import 'package:venturo_core/features/profile/bindings/profile_binding.dart';
 import 'package:venturo_core/features/profile/view/ui/edit_profile_screen.dart';
@@ -116,5 +117,9 @@ abstract class Pages {
     ),
 
     // Pengumuman Detail
+    GetPage(
+      name: Routes.detailPengumumanRoute,
+      page: () => const DetailPengumuman(),
+    ),
   ];
 }

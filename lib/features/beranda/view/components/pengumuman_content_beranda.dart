@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:venturo_core/features/pengumuman_banner/view/components/detail_pengumuman.dart';
+import 'package:venturo_core/configs/routes/route.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class PengumumanContentBeranda extends StatelessWidget {
@@ -21,11 +21,11 @@ class PengumumanContentBeranda extends StatelessWidget {
   final String content;
 
   void _navigateToDetailPage() {
-    Get.to(() => PengumumanDetail(
-          title: title,
-          date: date,
-          content: content,
-        ));
+    Get.toNamed(Routes.detailPengumumanRoute, arguments: {
+      'title': title,
+      'date': date,
+      'content': content,
+    });
   }
 
   @override

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class PengumumanDetail extends StatelessWidget {
-  final String title;
-  final String date;
-  final String content;
-
-  const PengumumanDetail({
-    Key? key,
-    required this.title,
-    required this.date,
-    required this.content,
-  }) : super(key: key);
+class DetailPengumuman extends StatelessWidget {
+  const DetailPengumuman({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic>? args = Get.arguments;
+    final String title = args?['title'] ?? '';
+    final String date = args?['date'] ?? '';
+    final String content = args?['content'] ?? '';
+
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
