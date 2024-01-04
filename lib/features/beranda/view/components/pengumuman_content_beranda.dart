@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:venturo_core/configs/routes/route.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
@@ -10,22 +12,26 @@ class PengumumanContentBeranda extends StatelessWidget {
     this.isPinned = false,
     this.isLast = false,
     required this.title,
+    required this.head,
+    required this.kategori,
     required this.date,
+    required this.dateDetail,
     required this.content,
+    required this.onTap,
   }) : super(key: key);
 
   final bool isPinned;
   final bool isLast;
   final String title;
+  final String head;
+  final String kategori;
   final String date;
+  final String dateDetail;
   final String content;
+  final VoidCallback onTap;
 
   void _navigateToDetailPage() {
-    Get.toNamed(Routes.detailPengumumanRoute, arguments: {
-      'title': title,
-      'date': date,
-      'content': content,
-    });
+    onTap();
   }
 
   @override
@@ -70,7 +76,7 @@ class PengumumanContentBeranda extends StatelessWidget {
                     SizedBox(
                       width: 217.w,
                       child: Text(
-                        title,
+                        kategori,
                         style: NunitoTextStyle.fw700.copyWith(
                           color: const Color(0xFF0B0C0D),
                           fontSize: 16.sp,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:venturo_core/features/pengumuman_banner/view/components/detail_banner_card.dart';
+import 'package:venturo_core/features/pengumuman_banner/view/components/detail_pengumuman_card.dart';
 import 'package:venturo_core/features/pengumuman_banner/view/components/topbar_pengumuman.dart';
 
-class DetailBannerScreen extends StatelessWidget {
-  const DetailBannerScreen({super.key});
+class DetailPengumumanScreen extends StatelessWidget {
+  const DetailPengumumanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +13,12 @@ class DetailBannerScreen extends StatelessWidget {
       body: Column(
         children: [
           // Topbar
-          const TopBarPengumuman(title: "Banner"),
+          const TopBarPengumuman(title: "Pengumuman"),
 
           32.verticalSpace,
 
           // Card
-          DetailBannerCard(),
+          DetailPengumumanCard(),
         ],
       ),
     );

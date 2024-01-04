@@ -59,8 +59,13 @@ class PengumumanCardBeranda extends StatelessWidget {
                               pengumumanController.pengumumanList.length - 1,
                           isPinned: index == 0,
                           title: pengumuman['title'] ?? '',
+                          head: pengumuman['head'] ?? '',
+                          kategori: pengumuman['kategori'] ?? '',
                           date: pengumuman['date'] ?? '',
                           content: pengumuman['content'] ?? '',
+                          dateDetail: pengumuman['date_detail'] ?? '',
+                          onTap: () =>
+                              pengumumanController.navigateToDetailPage(index),
                         );
                       },
                     ),
