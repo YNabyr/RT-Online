@@ -11,6 +11,7 @@ class PengumumanContentBeranda extends StatelessWidget {
     Key? key,
     this.isPinned = false,
     this.isLast = false,
+    required this.image,
     required this.title,
     required this.head,
     required this.kategori,
@@ -22,6 +23,7 @@ class PengumumanContentBeranda extends StatelessWidget {
 
   final bool isPinned;
   final bool isLast;
+  final String image;
   final String title;
   final String head;
   final String kategori;

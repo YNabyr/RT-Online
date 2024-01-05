@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
-class TopBarProfile extends StatelessWidget {
-  const TopBarProfile({
+class TopBarStrukturRt extends StatelessWidget {
+  const TopBarStrukturRt({
     Key? key,
     this.title,
   }) : super(key: key);
@@ -72,7 +72,7 @@ class TopBarProfile extends StatelessWidget {
 
                 // Text Informasi
                 Text(
-                  (title == null) ? 'Profile' : title!,
+                  (title == null) ? 'Struktur Rt' : title!,
                   textAlign: TextAlign.center,
                   style: PoppinsTextStyle.fw600.copyWith(
                     color: Colors.white,

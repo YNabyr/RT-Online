@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class HeaderBeranda extends StatelessWidget {
@@ -61,7 +62,9 @@ class HeaderBeranda extends StatelessWidget {
                     width: 40.w,
                     height: 40.w,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.back();
+                      },
                       icon: Icon(
                         Icons.arrow_back_ios_new,
                         color: Colors.white,

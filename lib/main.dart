@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           //   Locale('id'),
           // ],
           // initialBinding: , Jika memiliki global bindding
-          initialRoute: Routes.dashboardRoute,
+          initialRoute: Routes.loginRoute,
           theme: themeLight,
           defaultTransition: Transition.native,
           getPages: Pages.pages,

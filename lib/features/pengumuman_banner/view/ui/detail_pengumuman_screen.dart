@@ -10,16 +10,18 @@ class DetailPengumumanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffeff0f5),
-      body: Column(
-        children: [
-          // Topbar
-          const TopBarPengumuman(title: "Pengumuman"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Topbar
+            const TopBarPengumuman(title: "Pengumuman"),
 
-          32.verticalSpace,
+            32.verticalSpace,
 
-          // Card
-          DetailPengumumanCard(),
-        ],
+            // Card
+            DetailPengumumanCard(),
+          ],
+        ),
       ),
     );
   }

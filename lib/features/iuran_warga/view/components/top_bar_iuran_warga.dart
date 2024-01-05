@@ -5,14 +5,15 @@ import 'package:get/get.dart';
 
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
-class TopBarProfile extends StatelessWidget {
-  const TopBarProfile({
+class TopBarIuranWarga extends StatelessWidget {
+  const TopBarIuranWarga({
     Key? key,
     this.title,
+    this.suffixIcon,
   }) : super(key: key);
 
   final String? title;
-
+  final IconData? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,7 +73,7 @@ class TopBarProfile extends StatelessWidget {
 
                 // Text Informasi
                 Text(
-                  (title == null) ? 'Profile' : title!,
+                  (title == null) ? 'Iuran' : title!,
                   textAlign: TextAlign.center,
                   style: PoppinsTextStyle.fw600.copyWith(
                     color: Colors.white,
@@ -80,10 +81,19 @@ class TopBarProfile extends StatelessWidget {
                   ),
                 ),
 
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  child: 40.horizontalSpace,
-                ),
+                // Icon
+                (suffixIcon == null)
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
+                        child: 40.horizontalSpace,
+                      )
+                    : Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
+                        child: Icon(
+                          suffixIcon,
+                          color: Colors.white,
+                        ),
+                      ),
               ],
             ),
           ),

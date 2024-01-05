@@ -12,6 +12,7 @@ class DetailPengumumanCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, dynamic>? args = Get.arguments;
 
+    final String image = args?['image'] ?? '';
     final String title = args?['title'] ?? '';
     final String head = args?['head'] ?? '';
     final String date = args?['date'] ?? '';
@@ -53,6 +54,17 @@ class DetailPengumumanCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Image
+                (image == '')
+                    ? Container()
+                    : Padding(
+                        padding: EdgeInsets.only(bottom: 15.w),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Image.network(image),
+                        ),
+                      ),
+
                 // Title
                 Text(
                   title,
