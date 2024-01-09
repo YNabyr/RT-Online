@@ -9,58 +9,61 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffeff0f5),
-      body: Obx(
-        () => DashboardController
-            .to.main[DashboardController.to.currentIndex.value],
-      ),
-      bottomNavigationBar: Obx(
-        () => Container(
-          height: 80.w,
-          decoration: const ShapeDecoration(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        backgroundColor: const Color(0xffeff0f5),
+        body: Obx(
+          () => DashboardController
+              .to.main[DashboardController.to.currentIndex.value],
+        ),
+        bottomNavigationBar: Obx(
+          () => Container(
+            height: 80.w,
+            decoration: const ShapeDecoration(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              shadows: [
+                BoxShadow(
+                  color: Color(0x26000000),
+                  blurRadius: 8,
+                  offset: Offset(0, -4),
+                  spreadRadius: 0,
+                )
+              ],
+            ),
+            child: Material(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
-            ),
-            shadows: [
-              BoxShadow(
-                color: Color(0x26000000),
-                blurRadius: 8,
-                offset: Offset(0, -4),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Material(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(8.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: _buildNavItem(
-                        0, DashboardController.to.icon, 'Beranda'),
-                  ),
-                  Expanded(
-                    child: _buildNavItem(
-                        1, DashboardController.to.icon, 'Tata Tertib'),
-                  ),
-                  Expanded(
-                    child: _buildNavItem(
-                        2, DashboardController.to.icon, 'Iuran Warga'),
-                  ),
-                  Expanded(
-                    child: _buildNavItem(
-                        3, DashboardController.to.icon, 'Struktur RT'),
-                  ),
-                ],
+              child: Padding(
+                padding: EdgeInsets.all(8.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: _buildNavItem(
+                          0, DashboardController.to.icon, 'Beranda'),
+                    ),
+                    Expanded(
+                      child: _buildNavItem(
+                          1, DashboardController.to.icon, 'Tata Tertib'),
+                    ),
+                    Expanded(
+                      child: _buildNavItem(
+                          2, DashboardController.to.icon, 'Iuran Warga'),
+                    ),
+                    Expanded(
+                      child: _buildNavItem(
+                          3, DashboardController.to.icon, 'Struktur RT'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

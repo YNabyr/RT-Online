@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'package:venturo_core/shared/styles/google_text_style.dart';
@@ -13,7 +14,7 @@ class TopBarIuranWarga extends StatelessWidget {
   }) : super(key: key);
 
   final String? title;
-  final IconData? suffixIcon;
+  final String? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -89,9 +90,20 @@ class TopBarIuranWarga extends StatelessWidget {
                       )
                     : Padding(
                         padding: EdgeInsets.symmetric(horizontal: 12.w),
-                        child: Icon(
-                          suffixIcon,
-                          color: Colors.white,
+                        child: SizedBox(
+                          width: 40.w,
+                          height: 40.w,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: SvgPicture.asset(
+                              suffixIcon!,
+                              height: 24.w,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.white,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
               ],

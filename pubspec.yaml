@@ -114,7 +114,9 @@ flutter:
     - assets/images/ic_unlock_fill.png
     - assets/images/camera.svg
     - assets/images/file_text.svg
-  
+    - assets/images/ic_filter.svg
+    - assets/images/checkmark_circle_fill.svg
+    - assets/images/logo_rt_online_horizontal.svg
 
 
 

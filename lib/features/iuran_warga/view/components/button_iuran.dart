@@ -47,7 +47,7 @@ class ButtonIuran extends StatelessWidget {
 
               // Text
               SizedBox(
-                width: 278 - 32.w,
+                width: 278.w - 32.w,
                 child: Text(
                   title,
                   style: NunitoTextStyle.fw500.copyWith(

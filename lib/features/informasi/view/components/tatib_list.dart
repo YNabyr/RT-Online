@@ -45,7 +45,7 @@ class TatibList extends StatelessWidget {
 
               // Text
               SizedBox(
-                width: 278 - 32.w,
+                width: 278.w - 32.w,
                 child: Text(
                   'Tata tertib',
                   style: NunitoTextStyle.fw500.copyWith(
