@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:venturo_core/features/admin_informasi/models/informasi.dart';
 import 'package:http/http.dart' as http;
+import 'package:venturo_core/features/admin_informasi/models/informasi.dart';
 
-class InformasiController extends GetxController {
-  static InformasiController get to => Get.find();
+class AdminInformasiController extends GetxController {
+  static AdminInformasiController get to => Get.find();
 
   @override
   void onInit() async {
@@ -20,7 +20,7 @@ class InformasiController extends GetxController {
   final linkApi = [].obs;
 
   // is Loading
-  final isLoading = false.obs;
+  final isLoading = true.obs;
 
   // List Informasi
   final listInformasi = [].obs;
@@ -91,6 +91,30 @@ class InformasiController extends GetxController {
         });
       }
     } catch (e) {
+      throw Exception('Error: $e');
+    }
+  }
+
+  // delete informasi
+  Future<void> deleteInformasi(String informasiId) async {
+    try {
+      final response = await http.delete(
+        Uri.parse(
+            "https://rtonline-api.venturo.pro/api/v1/information/$informasiId"),
+      );
+
+      if (response.statusCode == 200) {
+        // Informasi dihapus dengan sukses, Anda dapat melakukan tindakan tambahan jika diperlukan
+        print('Informasi berhasil dihapus');
+
+        Get.closeAllSnackbars();
+        Get.snackbar("Succes", "Informasi berhasil dihapus");
+      } else {
+        throw Exception('Gagal menghapus Informasi');
+      }
+    } catch (e) {
+      Get.closeAllSnackbars();
+      Get.snackbar("Failed", "Gagal Menghapus Informasi");
       throw Exception('Error: $e');
     }
   }

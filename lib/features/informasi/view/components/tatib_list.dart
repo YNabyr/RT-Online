@@ -1,14 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class TatibList extends StatelessWidget {
   const TatibList({
     Key? key,
+    required this.name,
     this.onTap,
   }) : super(key: key);
 
+  final String name;
   final void Function()? onTap;
 
   @override
@@ -30,16 +34,17 @@ class TatibList extends StatelessWidget {
           ],
         ),
         child: SizedBox(
-          height: 30.w,
+          height: 30.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Icon
               SizedBox(
                 width: 30.w,
-                child: const ImageIcon(
-                  AssetImage("assets/images/ic_tertib_fill.png"),
-                  color: Color(0xff6454F0),
+                child: SvgPicture.asset(
+                  "assets/fill/Tertib.svg",
+                  colorFilter: const ColorFilter.mode(
+                      Color(0xff6454F0), BlendMode.srcIn),
                 ),
               ),
 
@@ -47,7 +52,7 @@ class TatibList extends StatelessWidget {
               SizedBox(
                 width: 278.w - 32.w,
                 child: Text(
-                  'Tata tertib',
+                  (name == null) ? 'null' : name,
                   style: NunitoTextStyle.fw500.copyWith(
                     color: const Color(0xFF0B0C0D),
                     fontSize: 16.sp,
@@ -58,8 +63,12 @@ class TatibList extends StatelessWidget {
               // Button Icon
               SizedBox(
                 width: 24.w,
-                child: const ImageIcon(
-                  AssetImage("assets/images/ic_arrow_ios_right.png"),
+                child: SvgPicture.asset(
+                  "assets/outline/arrow-ios-right.svg",
+                  colorFilter: const ColorFilter.mode(
+                    Color(0xff0B0C0D),
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ],

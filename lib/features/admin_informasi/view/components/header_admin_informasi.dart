@@ -1,19 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:venturo_core/shared/controllers/global_vairable.dart';
 
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
-class TopBarInformasi extends StatelessWidget {
-  const TopBarInformasi({
+class HeaderAdminInformasi extends StatelessWidget {
+  const HeaderAdminInformasi({
     Key? key,
     this.title,
+    this.suffixIcon,
+    this.onTap,
   }) : super(key: key);
 
   final String? title;
+  final String? suffixIcon;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +52,7 @@ class TopBarInformasi extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 15.w),
+            margin: EdgeInsets.only(top: 15.h),
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             width: 382.w,
             height: double.infinity,
@@ -77,10 +81,9 @@ class TopBarInformasi extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 // Text Informasi
                 Text(
-                  (title == null) ? 'Informasi' : title!,
+                  (title == null) ? 'Iuran' : title!,
                   textAlign: TextAlign.center,
                   style: PoppinsTextStyle.fw600.copyWith(
                     color: Colors.white,
@@ -88,7 +91,28 @@ class TopBarInformasi extends StatelessWidget {
                   ),
                 ),
 
-                24.horizontalSpace,
+                // Icon
+                (suffixIcon == null)
+                    ? 24.horizontalSpace
+                    : Material(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(24),
+                        child: InkWell(
+                          onTap: onTap,
+                          borderRadius: BorderRadius.circular(24),
+                          child: SizedBox(
+                            width: 24.w,
+                            height: 24.h,
+                            child: SvgPicture.asset(
+                              suffixIcon!,
+                              colorFilter: const ColorFilter.mode(
+                                Colors.white,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
               ],
             ),
           ),
