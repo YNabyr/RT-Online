@@ -11,7 +11,7 @@ class AlertKeuanganBeranda extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 220.w,
-      padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 20.w),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
