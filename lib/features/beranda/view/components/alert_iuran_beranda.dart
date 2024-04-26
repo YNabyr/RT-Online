@@ -14,11 +14,11 @@ class AlertIuranBeranda extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       right: 0,
-      bottom: 25.w,
+      bottom: 25.h,
       child: (isDue)
           ? Container(
               width: 213.w,
-              padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 20.w),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -84,7 +84,7 @@ class AlertIuranBeranda extends StatelessWidget {
             )
           : Container(
               width: 213.w,
-              padding: EdgeInsets.symmetric(vertical: 10.w, horizontal: 20.w),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,

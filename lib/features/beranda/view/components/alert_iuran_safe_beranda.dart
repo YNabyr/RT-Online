@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AlertIuranSafeBeranda extends StatelessWidget {
   const AlertIuranSafeBeranda({
@@ -13,17 +14,17 @@ class AlertIuranSafeBeranda extends StatelessWidget {
     return // Icon Money and Card
         Positioned(
       right: 0,
-      bottom: 33.w,
+      bottom: 33.h,
       child: (isDue)
           ? SizedBox(
               width: 73.w,
-              height: 63.w,
-              child: Image.asset("assets/images/money_green.png"),
+              height: 63.h,
+              child: SvgPicture.asset("assets/fill/green_card.svg"),
             )
           : SizedBox(
               width: 73.w,
-              height: 63.w,
-              child: Image.asset("assets/images/money_red.png"),
+              height: 63.h,
+              child: SvgPicture.asset("assets/fill/red_card.svg"),
             ),
     );
   }

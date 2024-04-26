@@ -26,7 +26,7 @@ class StrukPembayaranScreen extends StatelessWidget {
             // Button bagikan
             SizedBox(
               width: 382.w,
-              height: 54.w,
+              height: 54.h,
               child: FilledButton(
                 onPressed: () {},
                 style: const ButtonStyle(

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import 'package:venturo_core/shared/controllers/global_vairable.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class TopBarIuranWarga extends StatelessWidget {
@@ -11,15 +12,18 @@ class TopBarIuranWarga extends StatelessWidget {
     Key? key,
     this.title,
     this.suffixIcon,
+    this.onTap,
   }) : super(key: key);
 
   final String? title;
   final String? suffixIcon;
+  final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 430.w,
-      height: 100.w,
+      height: 100.h + safePadding(context),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -48,25 +52,31 @@ class TopBarIuranWarga extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 15.w),
+            margin: EdgeInsets.only(top: 15.h),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             width: 382.w,
             height: double.infinity,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Button Back Icons
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  child: SizedBox(
-                    width: 40.w,
-                    height: 40.w,
-                    child: IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: const ImageIcon(
-                        AssetImage("assets/images/ic_arrow_ios_left.png"),
-                        color: Colors.white,
+                Material(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(24),
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    borderRadius: BorderRadius.circular(24),
+                    child: SizedBox(
+                      width: 24.w,
+                      height: 24.h,
+                      child: SvgPicture.asset(
+                        "assets/outline/arrow-ios-left.svg",
+                        colorFilter: const ColorFilter.mode(
+                          Colors.white,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
@@ -84,20 +94,18 @@ class TopBarIuranWarga extends StatelessWidget {
 
                 // Icon
                 (suffixIcon == null)
-                    ? Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 12.w),
-                        child: 40.horizontalSpace,
-                      )
-                    : Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 12.w),
-                        child: SizedBox(
-                          width: 40.w,
-                          height: 40.w,
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset(
+                    ? 24.horizontalSpace
+                    : Material(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(24),
+                        child: InkWell(
+                          onTap: onTap,
+                          borderRadius: BorderRadius.circular(24),
+                          child: SizedBox(
+                            width: 24.w,
+                            height: 24.h,
+                            child: SvgPicture.asset(
                               suffixIcon!,
-                              height: 24.w,
                               colorFilter: const ColorFilter.mode(
                                 Colors.white,
                                 BlendMode.srcIn,

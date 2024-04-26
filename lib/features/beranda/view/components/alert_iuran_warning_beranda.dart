@@ -8,10 +8,10 @@ class AlertIuranWarningBeranda extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       right: 195.w,
-      bottom: 60.w,
+      bottom: 60.h,
       child: Container(
         width: 24.w,
-        height: 24.w,
+        height: 24.h,
         decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
@@ -21,7 +21,7 @@ class AlertIuranWarningBeranda extends StatelessWidget {
           children: [
             Image.asset(
               "assets/images/ic_alert_triangle.png",
-              height: 15.w,
+              height: 15.h,
             ),
             2.verticalSpace,
           ],

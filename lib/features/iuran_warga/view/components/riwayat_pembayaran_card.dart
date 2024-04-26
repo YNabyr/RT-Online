@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:venturo_core/configs/routes/route.dart';
 import 'package:venturo_core/features/iuran_warga/view/components/header_riwayat_pembayaran.dart';
 import 'package:venturo_core/features/iuran_warga/view/components/struk_pembayaran_card.dart';
 import 'package:venturo_core/features/iuran_warga/view/ui/struk_pembayaran_screen.dart';
@@ -86,11 +88,11 @@ class RiwayatPembayaranCard extends StatelessWidget {
   GestureDetector buildRiwayatCard(int amount, {final bool isLast = false}) {
     return GestureDetector(
       onTap: () {
-        Get.to(const StrukPembayaranScreen());
+        Get.toNamed(Routes.strukPembayaranRoute);
       },
       child: Container(
         width: 358.w,
-        padding: EdgeInsets.symmetric(vertical: 12.w),
+        padding: EdgeInsets.symmetric(vertical: 12.h),
 
         decoration:
             // isLast ?
@@ -149,11 +151,8 @@ class RiwayatPembayaranCard extends StatelessWidget {
 
             // Button Icon
             SizedBox(
-              width: 24.w,
-              child: const ImageIcon(
-                AssetImage("assets/images/ic_arrow_ios_right.png"),
-              ),
-            ),
+                width: 24.w,
+                child: SvgPicture.asset("assets/outline/arrow-ios-right.svg")),
           ],
         ),
       ),

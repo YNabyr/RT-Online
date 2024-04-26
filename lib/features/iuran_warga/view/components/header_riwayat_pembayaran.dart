@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
@@ -21,9 +22,7 @@ class HeaderRiwayatPembayaran extends StatelessWidget {
       child: Row(
         children: [
           // Icon
-          const ImageIcon(
-            AssetImage("assets/images/ic_arrow_ios_down.png"),
-          ),
+          SvgPicture.asset("assets/outline/arrow-ios-down.svg"),
 
           15.horizontalSpace,
 

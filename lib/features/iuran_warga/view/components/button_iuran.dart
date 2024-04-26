@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class ButtonIuran extends StatelessWidget {
@@ -19,7 +20,7 @@ class ButtonIuran extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(16.w),
-        width: 350.w,
+        width: 382.w,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
@@ -32,16 +33,17 @@ class ButtonIuran extends StatelessWidget {
           ],
         ),
         child: SizedBox(
-          height: 30.w,
+          height: 30.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Icon
               SizedBox(
                 width: 30.w,
-                child: const ImageIcon(
-                  AssetImage("assets/images/ic_tertib_fill.png"),
-                  color: Color(0xff6454F0),
+                child: SvgPicture.asset(
+                  "assets/fill/Tertib.svg",
+                  colorFilter: const ColorFilter.mode(
+                      Color(0xff6454F0), BlendMode.srcIn),
                 ),
               ),
 
@@ -59,11 +61,9 @@ class ButtonIuran extends StatelessWidget {
 
               // Button Icon
               SizedBox(
-                width: 24.w,
-                child: const ImageIcon(
-                  AssetImage("assets/images/ic_arrow_ios_right.png"),
-                ),
-              ),
+                  width: 24.w,
+                  child:
+                      SvgPicture.asset("assets/outline/arrow-ios-right.svg")),
             ],
           ),
         ),

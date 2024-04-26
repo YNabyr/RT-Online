@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:venturo_core/configs/routes/route.dart';
 import 'package:venturo_core/features/iuran_warga/constants/iuran_warga_assets_constant.dart';
 import 'package:venturo_core/features/iuran_warga/view/components/button_iuran.dart';
 import 'package:venturo_core/features/iuran_warga/view/components/top_bar_iuran_warga.dart';
+import 'package:venturo_core/features/iuran_warga/view/ui/rekap_bulanan_screen.dart';
+import 'package:venturo_core/features/iuran_warga/view/ui/rekap_tahunan_screen.dart';
 import 'package:venturo_core/features/iuran_warga/view/ui/riwayat_pembayaran_screen.dart';
 
 class IuranWargaScreen extends StatelessWidget {
@@ -25,14 +28,24 @@ class IuranWargaScreen extends StatelessWidget {
           ButtonIuran(
             title: 'Rekap Pembayaran',
             onTap: () {
-              Get.to(const RiwayatPembayaranScreen());
+              Get.toNamed(Routes.riwayatPembayaranRoute);
             },
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 15.w),
-            child: const ButtonIuran(title: 'Rekap Tahunan Warga'),
+            padding: EdgeInsets.symmetric(vertical: 15.h),
+            child: ButtonIuran(
+              title: 'Rekap Tahunan Warga',
+              onTap: () {
+                Get.toNamed(Routes.rekapTahunanRoute);
+              },
+            ),
           ),
-          const ButtonIuran(title: 'Rekap Bulanan Warga'),
+          ButtonIuran(
+            title: 'Rekap Bulanan Warga',
+            onTap: () {
+              Get.toNamed(Routes.rekapBulananRoute);
+            },
+          ),
         ],
       ),
     );

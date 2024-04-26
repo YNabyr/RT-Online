@@ -18,9 +18,10 @@ class RiwayatPembayaranScreen extends StatelessWidget {
           child: Column(
             children: [
               // Topbar
-              const TopBarIuranWarga(
+              TopBarIuranWarga(
                 title: "Riwayat Pembayaran",
-                suffixIcon: "assets/images/ic_filter.svg",
+                suffixIcon: "assets/outline/Filter.svg",
+                onTap: () {},
               ),
 
               25.verticalSpace,
