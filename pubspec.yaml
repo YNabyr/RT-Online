@@ -47,6 +47,19 @@ dependencies:
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
   flutter_svg: ^2.0.9
+  qr_flutter: ^4.1.0
+  syncfusion_flutter_calendar: ^21.2.3
+  http: ^1.2.0
+  dio: ^5.4.0
+  shared_preferences: ^2.2.2
+  dropdown_button2: ^2.3.9
+  get_storage: ^2.1.1
+  image_picker: ^1.0.7
+  markdown: ^7.2.1
+  photo_view: ^0.14.0
+  mailer: ^6.1.0
+  
+
 
 
 dev_dependencies:
@@ -73,9 +86,71 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/..
-    - assets/images/..
-    - images/..
+  # svg outline
+    - assets/outline/arrow-ios-down.svg
+    - assets/outline/arrow-ios-left.svg
+    - assets/outline/arrow-ios-right.svg
+    - assets/outline/arrow-ios-up.svg
+    - assets/outline/calendar.svg
+    - assets/outline/checkmark-circle-2.svg
+    - assets/outline/checkmark.svg
+    - assets/outline/copy.svg
+    - assets/outline/cross-circle.svg
+    - assets/outline/edit-2.svg
+    - assets/outline/edit.svg
+    - assets/outline/eye-off.svg
+    - assets/outline/eye.svg
+    - assets/outline/file-text.svg
+    - assets/outline/file.svg
+    - assets/outline/Filter.svg
+    - assets/outline/grid.svg
+    - assets/outline/History.svg
+    - assets/outline/home.svg
+    - assets/outline/ic_settings_2.svg
+    - assets/outline/ic_whatsapp.svg
+    - assets/outline/image.svg
+    - assets/outline/Iuran.svg
+    - assets/outline/log-out.svg
+    - assets/outline/options-2.svg
+    - assets/outline/person.svg
+    - assets/outline/search.svg
+    - assets/outline/Structure.svg
+    - assets/outline/Tertib.svg
+    - assets/outline/trash-2.svg
+    - assets/outline/trash.svg
+    - assets/outline/file-add.svg
+
+  # svg fill
+    - assets/fill/Announcement.svg
+    - assets/fill/close-circle.svg
+    - assets/fill/eye.svg
+    - assets/fill/file-text.svg
+    - assets/fill/green_card.svg
+    - assets/fill/home.svg
+    - assets/fill/ic_camera.svg
+    - assets/fill/ic_checkmark-circle.svg
+    - assets/fill/ic_edit_2.svg
+    - assets/fill/ic_edit.svg
+    - assets/fill/ic_file_text.svg
+    - assets/fill/ic_file.svg
+    - assets/fill/ic_pin.svg
+    - assets/fill/ic_trash_2.svg
+    - assets/fill/ic_trash.svg
+    - assets/fill/Iuran.svg
+    - assets/fill/logo_bca.svg
+    - assets/fill/logo_mandiri.svg
+    - assets/fill/logo_rt_horizontal.svg
+    - assets/fill/logo_rt_vertical.svg
+    - assets/fill/paper_pen.svg
+    - assets/fill/Plus-Square.svg
+    - assets/fill/person.svg
+    - assets/fill/red_card.svg
+    - assets/fill/Structure.svg
+    - assets/fill/Tertib.svg
+    - assets/fill/trash-2.svg
+    - assets/fill/unlock.svg
+
+  # png
     - assets/images/ic_eye_off.png
     - assets/images/ic_eye_on.png
     - assets/images/logo_rt_horizontal.png
@@ -117,8 +192,26 @@ flutter:
     - assets/images/ic_filter.svg
     - assets/images/checkmark_circle_fill.svg
     - assets/images/logo_rt_online_horizontal.svg
-
-
+    - assets/images/checkmark_circle_2.svg
+    - assets/images/cross_circle.svg
+    - assets/images/ic_eye_on_fill.svg
+    - assets/images/close_circle_fill.svg
+    - assets/images/close_circle_fill.png
+    - assets/images/close-circle.png
+    - assets/images/logo_bca.png
+    - assets/images/ic_copy.svg
+    - assets/images/logo_mandiri.png
+    - assets/images/ic_grid.svg
+    - assets/images/ic_grid.png
+    - assets/images/empty_admin_pengumuman.png
+    - assets/images/plus_square_fill.png
+    - assets/images/ic_trash_2_fill.png
+    - assets/images/ic_trash_2.png
+    - assets/images/ic_history.png
+    - assets/images/ic_edit_2.png
+    - assets/images/ic_person.png
+    - assets/images/ic_filter.png
+    - assets/images/ic_file_add.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
