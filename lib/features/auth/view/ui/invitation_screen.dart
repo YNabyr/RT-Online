@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:venturo_core/features/auth/controllers/auth_controller.dart';
+import 'package:venturo_core/features/auth/controllers/invitation_controller.dart';
 import 'package:venturo_core/features/auth/view/components/button_gradient_auth.dart';
 import 'package:venturo_core/features/auth/view/components/footer_auth.dart';
 import 'package:venturo_core/features/auth/view/components/header_auth.dart';
@@ -33,7 +34,7 @@ class InvitationScreen extends StatelessWidget {
             TextFieldAuth(
               label: "Nama",
               hint: "Krisna Maulana",
-              controller: TextEditingController(text: "Krisna Maulana"),
+              controller: InvitationController.to.namaController,
               keyboardType: TextInputType.name,
               isReadOnly: true,
             ),
@@ -44,15 +45,26 @@ class InvitationScreen extends StatelessWidget {
             TextFieldAuth(
               label: "No. Handphone",
               hint: "Krisna Maulana",
-              controller: TextEditingController(text: "08123456789"),
+              controller: InvitationController.to.telpController,
               keyboardType: TextInputType.name,
-              isReadOnly: true,
+              isReadOnly: false,
             ),
 
             15.verticalSpace,
 
+            // TextField Email
+            TextFieldAuth(
+              isObscure: false,
+              label: "Email",
+              hint: "Masukkan Email",
+              keyboardType: TextInputType.text,
+              controller: InvitationController.to.emailController,
+            ),
+            15.verticalSpace,
+
             // TextField Nama
-            const TextFieldAuth(
+            TextFieldAuth(
+              controller: InvitationController.to.passwordController,
               isObscure: true,
               label: "Password",
               hint: "Masukkan Password",
@@ -66,7 +78,7 @@ class InvitationScreen extends StatelessWidget {
             ButtonGradientAuth(
               text: "Join",
               onPressed: () {
-                AuthController.to.toDashboard();
+                InvitationController.to.postInvitation();
               },
             ),
 

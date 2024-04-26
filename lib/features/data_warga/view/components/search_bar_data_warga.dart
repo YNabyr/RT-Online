@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class SearchBarDataWarga extends StatelessWidget {
@@ -28,17 +29,15 @@ class SearchBarDataWarga extends StatelessWidget {
           child: Row(
             children: [
               // Icon
-              const Icon(
-                Icons.search_rounded,
-              ),
+              SvgPicture.asset("assets/outline/search.svg"),
 
               // Divider
               Container(
                 padding: EdgeInsetsDirectional.symmetric(horizontal: 6.w),
-                height: 25.w,
+                height: 25.h,
                 child: const VerticalDivider(
                   thickness: 1,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Colors.black,
                 ),
               ),
 

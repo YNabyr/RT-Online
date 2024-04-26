@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:venturo_core/shared/controllers/global_vairable.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class HeaderAuth extends StatelessWidget {
@@ -14,7 +15,7 @@ class HeaderAuth extends StatelessWidget {
             // Background
             Container(
               width: 430.w,
-              height: 270.w,
+              height: 210.h + safePadding(context),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(15),
@@ -29,46 +30,42 @@ class HeaderAuth extends StatelessWidget {
             ),
 
             // Text
-            Align(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  SizedBox(height: 89.5.w),
-
-                  // Text
-                  Padding(
-                    padding: EdgeInsets.all(5.r),
-                    child: Text(
-                      'PERUM BUMI PALAPA',
-                      style: PoppinsTextStyle.fw600.copyWith(
-                        color: Colors.white,
-                        fontSize: 22.sp,
+            Padding(
+              padding: EdgeInsets.only(top: 59.5.h + safePadding(context)),
+              child: Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  height: 92.h,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Text
+                      Text(
+                        'PERUM BUMI PALAPA',
+                        style: PoppinsTextStyle.fw600.copyWith(
+                          color: Colors.white,
+                          fontSize: 22.sp,
+                        ),
                       ),
-                    ),
-                  ),
 
-                  Padding(
-                    padding: EdgeInsets.all(6.r),
-                    child: Text(
-                      'RT 01',
-                      style: PoppinsTextStyle.fw700.copyWith(
-                        color: Colors.white,
-                        fontSize: 24.sp,
+                      Text(
+                        'RT 01',
+                        style: PoppinsTextStyle.fw700.copyWith(
+                          color: Colors.white,
+                          fontSize: 24.sp,
+                        ),
                       ),
-                    ),
-                  ),
 
-                  Padding(
-                    padding: EdgeInsets.all(3.r),
-                    child: Text(
-                      'Mojolangu, Lowokwaru, Malang',
-                      style: NunitoTextStyle.fw700.copyWith(
-                        color: Colors.white,
-                        fontSize: 16.sp,
+                      Text(
+                        'Mojolangu, Lowokwaru, Malang',
+                        style: NunitoTextStyle.fw700.copyWith(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ],

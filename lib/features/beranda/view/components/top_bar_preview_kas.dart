@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class TopBarPreviewKas extends StatelessWidget {
@@ -19,8 +20,8 @@ class TopBarPreviewKas extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 382.w,
-      height: 42.w,
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
+      height: 42.h,
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
@@ -38,9 +39,9 @@ class TopBarPreviewKas extends StatelessWidget {
           // Button Left
           GestureDetector(
             onTap: onTapLeft,
-            child: Icon(
-              Icons.keyboard_arrow_left_rounded,
-              size: 20.w,
+            child: SvgPicture.asset(
+              "assets/outline/arrow-ios-left.svg",
+              height: 20.h,
             ),
           ),
 
@@ -61,9 +62,9 @@ class TopBarPreviewKas extends StatelessWidget {
           // Button Right
           GestureDetector(
             onTap: onTapRight,
-            child: Icon(
-              Icons.keyboard_arrow_right_rounded,
-              size: 20.w,
+            child: SvgPicture.asset(
+              "assets/outline/arrow-ios-right.svg",
+              height: 20.h,
             ),
           ),
         ],

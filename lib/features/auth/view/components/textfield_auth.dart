@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
@@ -56,7 +57,7 @@ class TextFieldAuth extends StatelessWidget {
 
           // Background
           Container(
-            margin: EdgeInsets.only(top: 8.w),
+            margin: EdgeInsets.only(top: 8.h),
             width: 382.w,
             decoration: ShapeDecoration(
               color: Colors.white,
@@ -108,10 +109,13 @@ class TextFieldAuth extends StatelessWidget {
                           onTap: onTapSuffixIcon,
                           child: SizedBox(
                             width: 20.w,
-                            height: 20.w,
-                            child: Image.asset(
-                              suffixIcon!,
-                              color: Colors.grey,
+                            height: 20.h,
+                            child: SvgPicture.asset(
+                              suffixIcon ?? "assets/outline/eye-off.svg",
+                              colorFilter: const ColorFilter.mode(
+                                Color(0xff9597A3),
+                                BlendMode.srcIn,
+                              ),
                             ),
                           ),
                         )

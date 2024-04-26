@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   fast_rsa
+  file_selector_linux
   smart_auth
 )
 

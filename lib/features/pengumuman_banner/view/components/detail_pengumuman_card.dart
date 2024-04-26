@@ -8,18 +8,20 @@ import 'package:venturo_core/shared/styles/google_text_style.dart';
 class DetailPengumumanCard extends StatelessWidget {
   DetailPengumumanCard({super.key});
 
+  final Map<String, dynamic>? args = Get.arguments;
+  get viewerlength {
+    List viewer = args?['viewers'];
+    return viewer.length;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic>? args = Get.arguments;
+    final String image = args?['pengumuman']['photo_url'] ?? '';
+    final String title = args?['pengumuman']['title'] ?? '';
+    final String date = args?['pengumuman']['created_at'] ?? '';
+    final String description = args?['pengumuman']['description'] ?? '';
 
-    final String image = args?['image'] ?? '';
-    final String title = args?['title'] ?? '';
-    final String head = args?['head'] ?? '';
-    final String date = args?['date'] ?? '';
-    final String content = args?['content'] ?? '';
-    final String kategori = args?['kategori'] ?? '';
-    final String dateDetail = args?['date_detail'] ?? '';
-
+    print(image);
     // Container Card
     return Container(
       width: 382.w,
@@ -45,7 +47,7 @@ class DetailPengumumanCard extends StatelessWidget {
           // Container Column Title, date, kategori
           Container(
             width: double.maxFinite,
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(color: const Color(0xFFB5B7C4), width: 1.w),
@@ -58,10 +60,21 @@ class DetailPengumumanCard extends StatelessWidget {
                 (image == '')
                     ? Container()
                     : Padding(
-                        padding: EdgeInsets.only(bottom: 15.w),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Image.network(image),
+                        padding: EdgeInsets.only(bottom: 15.h),
+                        child: GestureDetector(
+                          onTap: () {
+                            DetailBannerController.to
+                                .showImagePreview(context, image);
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.network(
+                              image,
+                              width: double.infinity,
+                              height: 177.h,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
 
@@ -81,7 +94,7 @@ class DetailPengumumanCard extends StatelessWidget {
                   children: [
                     // Date Detail
                     Text(
-                      dateDetail,
+                      date,
                       style: NunitoTextStyle.fw400.copyWith(
                         color: const Color(0xFF0B0C0D),
                         fontSize: 10.sp,
@@ -101,7 +114,7 @@ class DetailPengumumanCard extends StatelessWidget {
 
                     // Kategori
                     Text(
-                      kategori,
+                      title,
                       style: NunitoTextStyle.fw400.copyWith(
                         color: const Color(0xFF0B0C0D),
                         fontSize: 10.sp,
@@ -118,24 +131,24 @@ class DetailPengumumanCard extends StatelessWidget {
           // Container Column Head, Content
           Container(
             width: double.maxFinite,
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Head
-                Text(
-                  head,
-                  style: NunitoTextStyle.fw700.copyWith(
-                    color: const Color(0xFF0B0C0D),
-                    fontSize: 14.sp,
-                  ),
-                ),
+                // // Head
+                // Text(
+                //   title,
+                //   style: NunitoTextStyle.fw700.copyWith(
+                //     color: const Color(0xFF0B0C0D),
+                //     fontSize: 14.sp,
+                //   ),
+                // ),
 
-                8.verticalSpace,
+                // 8.verticalSpace,
 
                 // Content
                 Text(
-                  content,
+                  description,
                   textAlign: TextAlign.justify,
                   style: NunitoTextStyle.fw300.copyWith(
                     color: const Color(0xFF0B0C0D),
@@ -150,7 +163,7 @@ class DetailPengumumanCard extends StatelessWidget {
 
           // Footer Pengumuman
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
             decoration: const BoxDecoration(
               border: Border(
                 top: BorderSide(width: 1, color: Color(0xffB5B7C4)),
@@ -172,18 +185,22 @@ class DetailPengumumanCard extends StatelessWidget {
                 ),
 
                 // Profil
-                buildImagesStack(),
+                buildImagesStack(
+                  viewerlength,
+                ),
 
                 4.horizontalSpace,
 
                 // Text
-                Text(
-                  '+${(controller.jumlahBaca.length) - (controller.imageUrls.length)}',
-                  style: NunitoTextStyle.fw800.copyWith(
-                    color: const Color(0xFF0B0C0D),
-                    fontSize: 10.sp,
-                  ),
-                )
+                (viewerlength > 4)
+                    ? Text(
+                        '+${(viewerlength) - 4}',
+                        style: NunitoTextStyle.fw800.copyWith(
+                          color: const Color(0xFF0B0C0D),
+                          fontSize: 10.sp,
+                        ),
+                      )
+                    : Container(),
               ],
             ),
           ),
@@ -194,35 +211,33 @@ class DetailPengumumanCard extends StatelessWidget {
 
   DetailBannerController controller = Get.put(DetailBannerController());
 
-  Widget buildImagesStack() {
+  Widget buildImagesStack(int count) {
     // List berisi posisi kiri dari setiap gambar
     List<double> positions = [0, 12, 24, 36];
 
     return SizedBox(
       width: 56.w,
-      height: 20.w,
-      child: Obx(
-        () => Stack(
-          children: List.generate(controller.imageUrls.length, (index) {
-            String imageUrl = controller.imageUrls[index];
-            return Positioned(
-              left: positions[index].w,
-              child: Container(
-                width: 20.w,
-                height: 20.w,
-                decoration: ShapeDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(imageUrl),
-                    fit: BoxFit.fill,
-                  ),
-                  shape: const OvalBorder(
-                    side: BorderSide(width: 1, color: Color(0xFF6454F0)),
-                  ),
+      height: 20.h,
+      child: Stack(
+        children: List.generate(count, (index) {
+          String imageUrl = controller.imageUrls[index];
+          return Positioned(
+            left: positions[index].w,
+            child: Container(
+              width: 20.w,
+              height: 20.h,
+              decoration: ShapeDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(imageUrl),
+                  fit: BoxFit.fill,
+                ),
+                shape: const OvalBorder(
+                  side: BorderSide(width: 1, color: Color(0xFF6454F0)),
                 ),
               ),
-            );
-          }).toList(),
-        ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

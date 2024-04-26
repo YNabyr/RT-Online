@@ -1,73 +1,77 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:venturo_core/constants/api_const.dart';
+import 'package:venturo_core/features/admin_pengumuman/models/pengumuman.dart';
+import 'package:venturo_core/features/beranda/models/detail_announcements.dart';
+import 'package:venturo_core/features/beranda/models/viewers.dart';
+import 'package:venturo_core/utils/services/api_services.dart';
 
 class PengumumanRepository extends GetxController {
-  // Data Pengumuman Content
-  List<Map<String, String>> getPengumumanList() {
-    return [
-      {
-        'image':
-            'https://i.pinimg.com/564x/c6/5e/6d/c65e6dba9de438ebf53e231903b10d69.jpg',
-        'kategori': 'Berita Duka',
-        'title': 'Telah Meninggal Bapak ABCDE',
-        'date': '10 Okt 2023',
-        'date_detail': 'Jumat, 20 Oktober 2023 15:30',
-        'head': 'INALILAHI WAINALILAHI ROJIUN',
-        'content':
-            'Telah meninggal dunia Agung Setiawan warga RT. 01. Jenazah sedang di rumah duka DI perum palapa B - 10 dan akan dimakamkan juga pada hari ini pukul 12:00 di TPU Indah permata Semoga keluarga yang ditinggalkan selalu mendapatkan ketabahan keikhlasan dan kesabaran. Bagi warga perum palapa indah mutiara yang ingin mengikuti pemakaman almarhum/ almarhumah dilaksana-kan pada waktu yang sudah dijelaskan',
-      },
-      {
-        'image': '',
-        'kategori': 'Berita Duka',
-        'title': 'Telah Meninggal Bapak ABCDE',
-        'date': '11 Okt 2023',
-        'date_detail': 'Jumat, 20 Oktober 2023 15:30',
-        'head': 'INALILAHI WAINALILAHI ROJIUN',
-        'content':
-            'Telah meninggal dunia Agung Setiawan warga RT. 01. Jenazah sedang di rumah duka DI perum palapa B - 10 dan akan dimakamkan juga pada hari ini pukul 12:00 di TPU Indah permata Semoga keluarga yang ditinggalkan selalu mendapatkan ketabahan keikhlasan dan kesabaran. Bagi warga perum palapa indah mutiara yang ingin mengikuti pemakaman almarhum/ almarhumah dilaksana-kan pada waktu yang sudah dijelaskan',
-      },
-      {
-        'image':
-            'https://i.pinimg.com/564x/c6/5e/6d/c65e6dba9de438ebf53e231903b10d69.jpg',
-        'kategori': 'Berita Duka',
-        'title': 'Telah Meninggal Bapak ABCDE',
-        'date': '12 Okt 2023',
-        'date_detail': 'Jumat, 20 Oktober 2023 15:30',
-        'head': 'INALILAHI WAINALILAHI ROJIUN',
-        'content':
-            'Telah meninggal dunia Agung Setiawan warga RT. 01. Jenazah sedang di rumah duka DI perum palapa B - 10 dan akan dimakamkan juga pada hari ini pukul 12:00 di TPU Indah permata Semoga keluarga yang ditinggalkan selalu mendapatkan ketabahan keikhlasan dan kesabaran. Bagi warga perum palapa indah mutiara yang ingin mengikuti pemakaman almarhum/ almarhumah dilaksana-kan pada waktu yang sudah dijelaskan',
-      },
-      {
-        'image': '',
-        'kategori': 'Berita Duka',
-        'title': 'Telah Meninggal Bapak ABCDE',
-        'date': '13 Okt 2023',
-        'date_detail': 'Jumat, 20 Oktober 2023 15:30',
-        'head': 'INALILAHI WAINALILAHI ROJIUN',
-        'content':
-            'Telah meninggal dunia Agung Setiawan warga RT. 01. Jenazah sedang di rumah duka DI perum palapa B - 10 dan akan dimakamkan juga pada hari ini pukul 12:00 di TPU Indah permata Semoga keluarga yang ditinggalkan selalu mendapatkan ketabahan keikhlasan dan kesabaran. Bagi warga perum palapa indah mutiara yang ingin mengikuti pemakaman almarhum/ almarhumah dilaksana-kan pada waktu yang sudah dijelaskan',
-      },
-      {
-        'image':
-            'https://i.pinimg.com/564x/c6/5e/6d/c65e6dba9de438ebf53e231903b10d69.jpg',
-        'kategori': 'Berita Duka',
-        'title': 'Telah Meninggal Bapak ABCDE',
-        'date': '14 Okt 2023',
-        'date_detail': 'Jumat, 20 Oktober 2023 15:30',
-        'head': 'INALILAHI WAINALILAHI ROJIUN',
-        'content':
-            'Telah meninggal dunia Agung Setiawan warga RT. 01. Jenazah sedang di rumah duka DI perum palapa B - 10 dan akan dimakamkan juga pada hari ini pukul 12:00 di TPU Indah permata Semoga keluarga yang ditinggalkan selalu mendapatkan ketabahan keikhlasan dan kesabaran. Bagi warga perum palapa indah mutiara yang ingin mengikuti pemakaman almarhum/ almarhumah dilaksana-kan pada waktu yang sudah dijelaskan',
-      },
-      {
-        'image': '',
-        'kategori': 'Berita Duka',
-        'title': 'Telah Meninggal Bapak ABCDE',
-        'date': '15 Okt 2023',
-        'date_detail': 'Jumat, 20 Oktober 2023 15:30',
-        'head': 'INALILAHI WAINALILAHI ROJIUN',
-        'content':
-            'Telah meninggal dunia Agung Setiawan warga RT. 01. Jenazah sedang di rumah duka DI perum palapa B - 10 dan akan dimakamkan juga pada hari ini pukul 12:00 di TPU Indah permata Semoga keluarga yang ditinggalkan selalu mendapatkan ketabahan keikhlasan dan kesabaran. Bagi warga perum palapa indah mutiara yang ingin mengikuti pemakaman almarhum/ almarhumah dilaksana-kan pada waktu yang sudah dijelaskan',
-      },
-      // Tambahkan pengumuman lainnya sesuai kebutuhan
-    ];
+  PengumumanRepository._();
+
+  static final Dio _dio = ApiServices.dioCall();
+
+  // Get Annnouncements
+  static Future<Pengumuman> getAnnouncements() async {
+    try {
+      var response = await _dio.get(ApiConst.announcements);
+      Pengumuman announcements = Pengumuman.fromJson(response.data);
+
+      // If statuscode == 200
+      if (response.statusCode == 200) {
+        return announcements;
+      } else {
+        return Pengumuman(message: "ERROR");
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  // Get Detail Pengumuman
+  static Future<DetailAnnouncements> getDetailAnnouncements(
+      String announcementsId) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var token = prefs.getString("access_token");
+      final Dio dio = ApiServices.dioCall(authorization: token);
+      var response =
+          await dio.get("${ApiConst.announcements}/$announcementsId");
+
+      DetailAnnouncements announcements =
+          DetailAnnouncements.fromJson(response.data);
+
+      print("INI VIEWERS : ");
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        return announcements;
+      } else {
+        return DetailAnnouncements(message: "Error");
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  // Get Viewers
+  static Future<Viewers> getViewers() async {
+    try {
+      var response = await _dio.get("${ApiConst.viewers}/");
+
+      Viewers viewers = Viewers.fromJson(response.data);
+
+      print("INI VIEWERS : ");
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        return viewers;
+      } else {
+        return Viewers(message: "Error");
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 }

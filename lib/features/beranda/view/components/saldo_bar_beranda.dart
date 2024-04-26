@@ -23,8 +23,8 @@ class SaldoBarBeranda extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 382.w,
-      height: 74.w,
-      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.w),
+      height: 74.h,
+      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -95,9 +95,9 @@ class SaldoBarBeranda extends StatelessWidget {
                       ),
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 2.w),
+                            horizontal: 16.w, vertical: 2.h),
                         width: 56.w,
-                        height: 20.w,
+                        height: 20.h,
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
@@ -119,7 +119,7 @@ class SaldoBarBeranda extends StatelessWidget {
             // Vertical Divider
             SizedBox(
               width: 1.w,
-              height: 54.w,
+              height: 54.h,
               child: const VerticalDivider(
                 color: Color(0xffB5B7C4),
               ),

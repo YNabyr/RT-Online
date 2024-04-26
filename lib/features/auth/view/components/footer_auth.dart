@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class FooterAuth extends StatelessWidget {
@@ -26,8 +27,9 @@ class FooterAuth extends StatelessWidget {
 
           // Logo Rt Online
           SizedBox(
-              width: 200.w,
-              child: Image.asset("assets/images/logo_rt_horizontal.png")),
+            width: 200.w,
+            child: SvgPicture.asset("assets/fill/logo_rt_horizontal.svg"),
+          ),
         ],
       ),
     );

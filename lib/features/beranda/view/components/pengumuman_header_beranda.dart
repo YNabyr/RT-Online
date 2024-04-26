@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:venturo_core/features/beranda/controllers/pengumuman_controller.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class PengumumanHeaderBeranda extends StatelessWidget {
@@ -7,17 +10,15 @@ class PengumumanHeaderBeranda extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(PengumumanController.to.listIsViewed);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 15, 15, 3).w,
+      padding: EdgeInsets.fromLTRB(15.w, 10.h, 15.w, 3.h),
       child: Stack(
         children: [
           Row(
             children: [
               // Announcement Icon
-              const ImageIcon(
-                AssetImage("assets/images/ic_announcement.png"),
-                color: Colors.black,
-              ),
+              SvgPicture.asset("assets/fill/Announcement.svg"),
 
               SizedBox(width: 5.w),
 
@@ -29,6 +30,44 @@ class PengumumanHeaderBeranda extends StatelessWidget {
                   color: const Color(0xFF0B0C0D),
                   fontSize: 16.sp,
                 ),
+              ),
+
+              // notif
+              Obx(
+                () => (PengumumanController.to.listIsViewed
+                        .where((e) => e == false)
+                        .toList()
+                        .isEmpty)
+                    ? const SizedBox()
+                    : Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 20.h),
+                          width: 14.w,
+                          height: 14.h,
+
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFFD40202),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(51),
+                            ),
+                          ),
+
+                          // Text
+                          child: Text(
+                            PengumumanController.to.listIsViewed
+                                .where((e) => e == false)
+                                .toList()
+                                .length
+                                .toString(),
+                            textAlign: TextAlign.center,
+                            style: NunitoTextStyle.fw800.copyWith(
+                              color: Colors.white,
+                              fontSize: 10.sp,
+                            ),
+                          ),
+                        ),
+                      ),
               ),
 
               // Expanded to push Lihat semua to the right
@@ -49,34 +88,45 @@ class PengumumanHeaderBeranda extends StatelessWidget {
             ],
           ),
 
-          // Circle Info
-          Positioned.fill(
-            left: 50.w,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: 14.w,
-                height: 14.w,
+          // // Circle Info
+          // Obx(
+          //   () => (PengumumanController.to.listIsViewed
+          //           .where((e) => e == false)
+          //           .toList()
+          //           .isEmpty)
+          //       ? const SizedBox()
+          //       : Positioned.fill(
+          //           left: 50.w,
+          //           child: Align(
+          //             alignment: Alignment.topCenter,
+          //             child: Container(
+          //               width: 14.w,
+          //               height: 14.h,
 
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFD40202),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(51),
-                  ),
-                ),
+          //               decoration: ShapeDecoration(
+          //                 color: const Color(0xFFD40202),
+          //                 shape: RoundedRectangleBorder(
+          //                   borderRadius: BorderRadius.circular(51),
+          //                 ),
+          //               ),
 
-                // Text
-                child: Text(
-                  '5',
-                  textAlign: TextAlign.center,
-                  style: NunitoTextStyle.fw800.copyWith(
-                    color: Colors.white,
-                    fontSize: 10.sp,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          //               // Text
+          //               child: Text(
+          //                 PengumumanController.to.listIsViewed
+          //                     .where((e) => e == false)
+          //                     .toList()
+          //                     .length
+          //                     .toString(),
+          //                 textAlign: TextAlign.center,
+          //                 style: NunitoTextStyle.fw800.copyWith(
+          //                   color: Colors.white,
+          //                   fontSize: 10.sp,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          // ),
         ],
       ),
     );

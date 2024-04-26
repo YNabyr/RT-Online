@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:venturo_core/features/profile/controllers/profile_controller.dart';
 import 'package:venturo_core/features/profile/view/components/button_gradient_profile.dart';
 import 'package:venturo_core/features/profile/view/components/profile_card.dart';
 import 'package:venturo_core/features/profile/view/components/text_field_edit_profile.dart';
@@ -11,6 +12,7 @@ class UbahPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffeff0f5),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -25,41 +27,46 @@ class UbahPasswordScreen extends StatelessWidget {
               32.verticalSpace,
 
               // Profile Card
-              const ProfileCard(
+              ProfileCard(
                 isEdit: true,
+                photo: ProfileController.to.userInfo['photo_url'],
+                badge: ProfileController.to.badge.value,
+                name: ProfileController.to.userInfo['name'],
+                perumahan: ProfileController.to.userInfo['date_of_birth'],
               ),
 
               43.verticalSpace,
 
               // Textfield Password sekarang
-              const TextFieldEditProfile(
+              TextFieldEditProfile(
                 isObscure: true,
                 label: "Password Sekarang",
                 hint: "Password",
+                controller: ProfileController.to.controllerPasswordSekarang,
                 textInputType: TextInputType.visiblePassword,
-                icon: "assets/images/ic_eye_on.png",
               ),
 
               20.verticalSpace,
 
               // TextField Password Baru
-              const TextFieldEditProfile(
+              TextFieldEditProfile(
                 isObscure: true,
                 label: "Password Baru",
+                controller: ProfileController.to.controllerPasswordBaru,
                 hint: "Password",
                 textInputType: TextInputType.visiblePassword,
-                icon: "assets/images/ic_eye_on.png",
               ),
 
               20.verticalSpace,
 
               // TextField Konfirmasi Password Baru
-              const TextFieldEditProfile(
+              TextFieldEditProfile(
                 isObscure: true,
+                controller:
+                    ProfileController.to.controllerKonfirmasiPasswordBaru,
                 label: "Konfirmasi Password Baru",
                 hint: "Password",
                 textInputType: TextInputType.visiblePassword,
-                icon: "assets/images/ic_eye_on.png",
               ),
 
               Expanded(child: Container()),

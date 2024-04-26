@@ -25,7 +25,7 @@ class _ImageSliderBerandaState extends State<ImageSliderBeranda> {
           options: CarouselOptions(
             enableInfiniteScroll: true,
             autoPlay: true,
-            height: 177.w,
+            height: 177.h,
             aspectRatio: 16 / 9,
             viewportFraction: 1,
             onPageChanged: (index, reason) {

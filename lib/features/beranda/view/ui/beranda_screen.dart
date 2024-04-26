@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:venturo_core/configs/routes/route.dart';
+import 'package:venturo_core/features/auth/controllers/auth_controller.dart';
 
 import 'package:venturo_core/features/beranda/constants/beranda_assets_constant.dart';
+import 'package:venturo_core/features/beranda/controllers/beranda_controller.dart';
 import 'package:venturo_core/features/beranda/view/components/alert_iuran_beranda.dart';
 import 'package:venturo_core/features/beranda/view/components/alert_iuran_safe_beranda.dart';
 import 'package:venturo_core/features/beranda/view/components/alert_iuran_warning_beranda.dart';
@@ -12,6 +15,10 @@ import 'package:venturo_core/features/beranda/view/components/image_slider_beran
 import 'package:venturo_core/features/beranda/view/components/pengumuman_card_beranda.dart';
 import 'package:venturo_core/features/beranda/view/components/profile_bar_beranda.dart';
 import 'package:venturo_core/features/beranda/view/components/saldo_bar_beranda.dart';
+import 'package:venturo_core/features/pembayaran/view/ui/pembayaran_screen.dart';
+import 'package:venturo_core/features/pembayaran/view/ui/rincian_iuran_screen.dart';
+import 'package:venturo_core/features/profile/controllers/profile_controller.dart';
+import 'package:venturo_core/shared/controllers/global_vairable.dart';
 
 class BerandaScreen extends StatelessWidget {
   BerandaScreen({
@@ -37,7 +44,7 @@ class BerandaScreen extends StatelessWidget {
                       // Bacground Header
                       Container(
                         width: 430.w,
-                        height: 170.w,
+                        height: 173.h + safePadding(context),
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(24),
@@ -54,14 +61,21 @@ class BerandaScreen extends StatelessWidget {
                       // Profile Bar
                       Center(
                         child: Container(
-                          margin: EdgeInsets.only(top: 24.h),
-                          child: ProfileBarBeranda(
-                            iconPressed: () {
-                              Get.toNamed(Routes.profileRoute);
-                            },
-                            onTapProfile: () {
-                              Get.toNamed(Routes.profileRoute);
-                            },
+                          margin:
+                              EdgeInsets.only(top: 24.h + safePadding(context)),
+                          child: Obx(
+                            () => ProfileBarBeranda(
+                              name: BerandaController.to.userInfo['name'],
+                              perumahan: BerandaController
+                                  .to.userInfo['date_of_birth'],
+                              photo: BerandaController.to.userInfo['photo_url'],
+                              iconPressed: () {
+                                Get.toNamed(Routes.profileRoute);
+                              },
+                              onTapProfile: () {
+                                Get.toNamed(Routes.profileRoute);
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -69,7 +83,8 @@ class BerandaScreen extends StatelessWidget {
                       // Saldo Bar
                       Center(
                         child: Container(
-                          margin: EdgeInsets.only(top: 126.h),
+                          margin: EdgeInsets.only(
+                              top: 126.h + safePadding(context)),
                           child: SaldoBarBeranda(
                             amount: 10000000,
                             jumlahRumah: 50,
@@ -105,21 +120,31 @@ class BerandaScreen extends StatelessWidget {
           (isDue)
 
               // IsDue = true
-              ? Stack(
-                  children: [
-                    AlertIuranBeranda(isDue: isDue),
-                    AlertIuranSafeBeranda(isDue: isDue),
-                    const AlertIuranWarningBeranda(),
-                  ],
+              ? GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.rincianIuranRoute);
+                  },
+                  child: Stack(
+                    children: [
+                      AlertIuranBeranda(isDue: isDue),
+                      AlertIuranSafeBeranda(isDue: isDue),
+                      const AlertIuranWarningBeranda(),
+                    ],
+                  ),
                 )
               :
 
               // IsDue = false
-              Stack(
-                  children: [
-                    AlertIuranBeranda(isDue: isDue),
-                    AlertIuranSafeBeranda(isDue: isDue),
-                  ],
+              GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.rincianIuranRoute);
+                  },
+                  child: Stack(
+                    children: [
+                      AlertIuranBeranda(isDue: isDue),
+                      AlertIuranSafeBeranda(isDue: isDue),
+                    ],
+                  ),
                 ),
         ],
       ),

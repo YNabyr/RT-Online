@@ -1,23 +1,37 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:venturo_core/features/data_warga/view/components/button_gradient_data_warga.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class DataWargaBottomsheet extends StatelessWidget {
-  const DataWargaBottomsheet({super.key});
+  const DataWargaBottomsheet({
+    Key? key,
+    this.image,
+    this.badge,
+    this.name,
+    this.birth,
+    this.phone,
+  }) : super(key: key);
+
+  final String? image;
+  final String? badge;
+  final String? name;
+  final String? birth;
+  final String? phone;
 
   @override
   Widget build(BuildContext context) {
     // Container
     return Container(
       width: 430.w,
-      height: 490.w,
+      height: 490.h,
       padding: EdgeInsets.only(
-        top: 12.w,
+        top: 12.h,
         left: 24.w,
         right: 24.w,
-        bottom: 0.w,
+        bottom: 0.h,
       ),
       decoration: const ShapeDecoration(
         color: Colors.white,
@@ -33,7 +47,7 @@ class DataWargaBottomsheet extends StatelessWidget {
           // Bar
           Container(
             width: 100.w,
-            height: 5.w,
+            height: 5.h,
             decoration: ShapeDecoration(
               color: const Color(0xFF0B0C0D),
               shape: RoundedRectangleBorder(
@@ -43,8 +57,8 @@ class DataWargaBottomsheet extends StatelessWidget {
 
           // Text
           Container(
-            margin: EdgeInsets.symmetric(vertical: 15.w),
-            height: 30.w,
+            margin: EdgeInsets.symmetric(vertical: 15.h),
+            height: 30.h,
             child: Text(
               textAlign: TextAlign.center,
               'Detail Warga',
@@ -61,21 +75,21 @@ class DataWargaBottomsheet extends StatelessWidget {
             children: [
               // Container
               Container(
-                padding: EdgeInsets.all(8.w),
+                padding: EdgeInsets.all(8.r),
                 width: 148.w,
-                height: 148.w,
+                height: 148.h,
 
                 // Profile Image
                 child: Container(
                   width: 132.w,
-                  height: 132.w,
-                  decoration: const ShapeDecoration(
+                  height: 132.h,
+                  decoration: ShapeDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(
+                      image: NetworkImage(image ??
                           "https://i.pinimg.com/564x/39/0e/57/390e573833695377cf9afc85d5ae50aa.jpg"),
                       fit: BoxFit.cover,
                     ),
-                    shape: OvalBorder(),
+                    shape: const CircleBorder(),
                   ),
                 ),
               ),
@@ -96,7 +110,7 @@ class DataWargaBottomsheet extends StatelessWidget {
                   // Text
                   child: Center(
                     child: Text(
-                      'A-20',
+                      badge ?? 'null',
                       style: NunitoTextStyle.fw700.copyWith(
                         color: const Color(0xFFE2DDFE),
                         fontSize: 14.sp,
@@ -112,7 +126,7 @@ class DataWargaBottomsheet extends StatelessWidget {
 
           // Text Nama
           Text(
-            'Ahmad Sujadi',
+            name ?? 'null',
             style: PoppinsTextStyle.fw600.copyWith(
               color: const Color(0xFF0B0C0D),
               fontSize: 20.sp,
@@ -122,17 +136,17 @@ class DataWargaBottomsheet extends StatelessWidget {
           15.verticalSpace,
 
           // Text tgl
-          const TextFieldDetailWarga(
+          TextFieldDetailWarga(
             label: "Tempat, Tanggal Lahir",
-            tanggal: "Malang, 28 April 1987",
+            tanggal: birth ?? "null",
           ),
 
           15.verticalSpace,
 
           // Text no
-          const TextFieldDetailWarga(
+          TextFieldDetailWarga(
             label: "No. Telepon",
-            tanggal: "082148399478",
+            tanggal: phone ?? "null",
           ),
 
           15.verticalSpace,
@@ -173,11 +187,11 @@ class TextFieldDetailWarga extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
             decoration: const BoxDecoration(
               border: Border(bottom: BorderSide(width: 1)),
             ),
-            height: 38.w,
+            height: 38.h,
             child: TextField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(borderSide: BorderSide.none),

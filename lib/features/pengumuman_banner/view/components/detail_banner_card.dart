@@ -41,7 +41,7 @@ class DetailBannerCard extends StatelessWidget {
           // Banner + Judul Container
           Container(
             width: 358.w,
-            padding: EdgeInsets.fromLTRB(8.w, 8.w, 8.w, 15.w),
+            padding: EdgeInsets.fromLTRB(8.w, 8.h, 8.w, 15.h),
             decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(color: Color(0xFFB5B7C4), width: 1),
@@ -52,7 +52,7 @@ class DetailBannerCard extends StatelessWidget {
                 // Banner
                 Container(
                   width: 350.w,
-                  height: 177.w,
+                  height: 177.h,
                   color: Colors.white,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
@@ -102,7 +102,7 @@ class DetailBannerCard extends StatelessWidget {
 
           // Footer Banner
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.w),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
             decoration: const BoxDecoration(
               border: Border(
                 top: BorderSide(width: 1, color: Color(0xffB5B7C4)),
@@ -150,7 +150,7 @@ class DetailBannerCard extends StatelessWidget {
 
     return SizedBox(
       width: 56.w,
-      height: 20.w,
+      height: 20.h,
       child: Obx(
         () => Stack(
           children: List.generate(DetailBannerController.to.imageUrls.length,
@@ -160,7 +160,7 @@ class DetailBannerCard extends StatelessWidget {
               left: positions[index].w,
               child: Container(
                 width: 20.w,
-                height: 20.w,
+                height: 20.h,
                 decoration: ShapeDecoration(
                   image: DecorationImage(
                     image: NetworkImage(imageUrl),

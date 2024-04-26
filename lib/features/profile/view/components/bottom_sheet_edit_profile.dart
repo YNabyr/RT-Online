@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:venturo_core/features/profile/view/components/button_gradient_profile.dart';
 
+import 'package:venturo_core/features/profile/view/components/button_gradient_profile.dart';
 import 'package:venturo_core/features/profile/view/components/text_field_edit_profile.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
@@ -17,6 +17,8 @@ class BottomSheetEditProfile extends StatelessWidget {
     required this.text,
     this.onTapCamera,
     this.onTapFile,
+    this.isTextFieldOn = true,
+    this.height,
   }) : super(key: key);
 
   final String label;
@@ -26,13 +28,15 @@ class BottomSheetEditProfile extends StatelessWidget {
   final String text;
   final void Function()? onTapCamera;
   final void Function()? onTapFile;
+  final bool? isTextFieldOn;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(24.w, 12.w, 24.w, 0),
       width: double.infinity,
-      height: 370.w,
+      height: (height == null) ? 370.w : height,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -64,15 +68,21 @@ class BottomSheetEditProfile extends StatelessWidget {
             ),
           ),
 
-          // TextField
-          TextFieldEditProfile(
-            label: label,
-            hint: hint,
-            icon: icon,
-            textInputType: textInputType,
-          ),
-
-          15.verticalSpace,
+          (isTextFieldOn == true)
+              ?
+              // TextField
+              Column(
+                  children: [
+                    TextFieldEditProfile(
+                      label: label,
+                      hint: hint,
+                      icon: icon,
+                      textInputType: textInputType,
+                    ),
+                    15.verticalSpace,
+                  ],
+                )
+              : Container(),
 
           // Foto
           Container(
@@ -109,7 +119,7 @@ class BottomSheetEditProfile extends StatelessWidget {
                       ),
                       child: GestureDetector(
                           onTap: onTapCamera,
-                          child: SvgPicture.asset("assets/images/camera.svg")),
+                          child: SvgPicture.asset("assets/fill/ic_camera.svg")),
                     ),
 
                     32.horizontalSpace,
@@ -127,8 +137,7 @@ class BottomSheetEditProfile extends StatelessWidget {
                       ),
                       child: GestureDetector(
                           onTap: onTapFile,
-                          child:
-                              SvgPicture.asset("assets/images/file_text.svg")),
+                          child: SvgPicture.asset("assets/fill/file-text.svg")),
                     ),
                   ],
                 ),

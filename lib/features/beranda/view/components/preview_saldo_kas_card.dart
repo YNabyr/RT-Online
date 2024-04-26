@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:venturo_core/features/laporan_keuangan/view/ui/laporan_keuangan_screen.dart';
 
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
@@ -21,9 +23,9 @@ class PreviewSaldoKasCard extends StatelessWidget {
       children: [
         // Card
         Container(
-          margin: EdgeInsets.only(top: 25.w, bottom: 15.w),
+          margin: EdgeInsets.only(top: 25.w, bottom: 15.h),
           width: 382.w,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 14.h),
           decoration: ShapeDecoration(
             color: Colors.white,
             shape: RoundedRectangleBorder(
@@ -60,7 +62,7 @@ class PreviewSaldoKasCard extends StatelessWidget {
               // Note
               if (note != null)
                 Padding(
-                  padding: EdgeInsets.only(top: 18.w),
+                  padding: EdgeInsets.only(top: 18.h),
                   child: Row(
                     children: [
                       Text(
@@ -86,7 +88,7 @@ class PreviewSaldoKasCard extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Container(
               width: 120.w,
-              padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.w),
+              padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),
               decoration: ShapeDecoration(
                 color: const Color(0xFF6454F0),
                 shape: RoundedRectangleBorder(

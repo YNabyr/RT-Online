@@ -1,15 +1,27 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:venturo_core/features/profile/controllers/profile_controller.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
     Key? key,
     this.isEdit = false,
+    this.name,
+    this.perumahan,
+    this.photo,
+    this.badge,
+    this.onTap,
   }) : super(key: key);
 
   final bool? isEdit;
+  final String? name;
+  final String? perumahan;
+  final String? photo;
+  final String? badge;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +51,7 @@ class ProfileCard extends StatelessWidget {
 
           // Nama
           Text(
-            'Budi Setiawan',
+            name ?? "null",
             style: PoppinsTextStyle.fw700.copyWith(
               color: const Color(0xFF0B0C0D),
               fontSize: 22.sp,
@@ -52,7 +64,7 @@ class ProfileCard extends StatelessWidget {
           SizedBox(
             width: 330.w,
             child: Text(
-              'Perumahan Griya Shanta Permata, N-524, Mojolangu, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141',
+              perumahan ?? "null",
               textAlign: TextAlign.center,
               style: NunitoTextStyle.fw400.copyWith(
                 color: const Color(0xFF0B0C0D),
@@ -79,13 +91,15 @@ class ProfileCard extends StatelessWidget {
           child: Container(
             width: 50.w,
             height: 50.w,
-            decoration: const ShapeDecoration(
+            decoration: ShapeDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                    "https://i.pinimg.com/236x/ab/c6/16/abc6166dbac9b4c99f701948dd507a7d.jpg"),
+                  photo ??
+                      "https://i.pinimg.com/564x/be/6e/ee/be6eee7aa93781bd1baa53aaf7aeaf0d.jpg",
+                ),
                 fit: BoxFit.cover,
               ),
-              shape: OvalBorder(),
+              shape: const CircleBorder(),
             ),
           ),
         ),
@@ -104,7 +118,7 @@ class ProfileCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "C-23",
+                badge ?? "null",
                 style: NunitoTextStyle.fw700.copyWith(
                   color: const Color(0xFFE2DDFE),
                   fontSize: 14.sp,
@@ -118,71 +132,72 @@ class ProfileCard extends StatelessWidget {
   }
 
   Widget profileEdit() {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        // Container
-        Container(
-          padding: EdgeInsets.all(8.w),
-          width: 150.w,
-          height: 150.w,
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          // Container
+          Container(
+            padding: EdgeInsets.all(8.w),
+            width: 150.w,
+            height: 150.w,
 
-          // Profile Image
-          child: GestureDetector(
+            // Profile Image
             child: Container(
               width: 50.w,
               height: 50.w,
-              decoration: const ShapeDecoration(
+              decoration: ShapeDecoration(
                 color: Colors.black,
                 image: DecorationImage(
                   opacity: 0.5,
-                  image: NetworkImage(
+                  image: NetworkImage(photo ??
                       "https://i.pinimg.com/236x/ab/c6/16/abc6166dbac9b4c99f701948dd507a7d.jpg"),
                   fit: BoxFit.cover,
                 ),
-                shape: OvalBorder(),
+                shape: const CircleBorder(),
               ),
             ),
           ),
-        ),
 
-        // Icon camera
-        Positioned.fill(
-          top: 5,
-          child: SizedBox(
-            width: 25.w,
-            height: 25.w,
-            child: const ImageIcon(
-              AssetImage("assets/images/ic_camera_fill.png"),
-              color: Colors.white,
+          // Icon camera
+          Positioned.fill(
+            top: 5,
+            child: SizedBox(
+              width: 25.w,
+              height: 25.w,
+              child: const ImageIcon(
+                AssetImage("assets/images/ic_camera_fill.png"),
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
 
-        // Blok
-        Positioned(
-          bottom: 4.w,
-          child: Container(
-            width: 54.w,
-            height: 26.w,
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            decoration: ShapeDecoration(
-              color: const Color(0xFF094181),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4)),
-            ),
-            child: Center(
-              child: Text(
-                "C-23",
-                style: NunitoTextStyle.fw700.copyWith(
-                  color: const Color(0xFFE2DDFE),
-                  fontSize: 14.sp,
+          // Blok
+          Positioned(
+            bottom: 4.w,
+            child: Container(
+              width: 54.w,
+              height: 26.w,
+              padding: EdgeInsets.symmetric(horizontal: 4.w),
+              decoration: ShapeDecoration(
+                color: const Color(0xFF094181),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4)),
+              ),
+              child: Center(
+                child: Text(
+                  badge ?? "null",
+                  style: NunitoTextStyle.fw700.copyWith(
+                    color: const Color(0xFFE2DDFE),
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

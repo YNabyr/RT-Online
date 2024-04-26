@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class DropDownEditProfile extends StatelessWidget {
@@ -58,8 +59,7 @@ class DropDownEditProfile extends StatelessWidget {
                   color: const Color(0xFF0B0C0D),
                   fontSize: 14.sp,
                 ),
-                icon: const ImageIcon(
-                    AssetImage("assets/images/ic_arrow_ios_down.png")),
+                icon: SvgPicture.asset("assets/outline/arrow-ios-down.svg"),
                 isExpanded: true,
                 hint: Text(
                   hint,

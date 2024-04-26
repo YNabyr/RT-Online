@@ -1,11 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:venturo_core/configs/routes/route.dart';
 import 'package:venturo_core/features/beranda/view/components/alert_keuangan_beranda.dart';
 
 import 'package:venturo_core/features/beranda/view/components/header_beranda.dart';
 import 'package:venturo_core/features/beranda/view/components/preview_saldo_kas_card.dart';
 import 'package:venturo_core/features/beranda/view/components/top_bar_preview_kas.dart';
+import 'package:venturo_core/features/laporan_keuangan/view/ui/laporan_keuangan_screen.dart';
+import 'package:venturo_core/shared/controllers/global_vairable.dart';
 
 class PreviewSaldoKasScreen extends StatelessWidget {
   const PreviewSaldoKasScreen({
@@ -31,14 +35,11 @@ class PreviewSaldoKasScreen extends StatelessWidget {
                         prefixIcon: Icons.arrow_back_ios_new_rounded,
                       ),
 
-                      130.verticalSpace,
-
                       // Button
-                      const Positioned.fill(
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-
-                          // Button Container
+                      Container(
+                        margin:
+                            EdgeInsets.only(top: 78.h + safePadding(context)),
+                        child: const Center(
                           child: TopBarPreviewKas(
                             text: "2023",
                           ),
@@ -66,14 +67,18 @@ class PreviewSaldoKasScreen extends StatelessWidget {
             // Alert
             Positioned(
               right: 0,
-              bottom: 30.w,
-              child: const AlertKeuanganBeranda(),
+              bottom: 30.h,
+              child: GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.laporanKeuanganRoute);
+                  },
+                  child: const AlertKeuanganBeranda()),
             ),
 
             // Image
             Positioned(
               right: 0.w,
-              bottom: 6.w,
+              bottom: 6.h,
               child: SizedBox(
                 child: Image.asset("assets/images/paper_pen.png"),
               ),

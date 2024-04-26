@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:venturo_core/features/dashboard/controllers/dashboard_controller.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
@@ -14,12 +15,14 @@ class DashboardScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: const Color(0xffeff0f5),
         body: Obx(
-          () => DashboardController
-              .to.main[DashboardController.to.currentIndex.value],
+          () {
+            return DashboardController
+                .to.main[DashboardController.to.currentIndex.value];
+          },
         ),
         bottomNavigationBar: Obx(
           () => Container(
-            height: 80.w,
+            height: 80.h,
             decoration: const ShapeDecoration(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -89,24 +92,26 @@ class DashboardScreen extends StatelessWidget {
         children: [
           // Icon
           (DashboardController.to.currentIndex.value == index)
-              ? ShaderMask(
-                  blendMode: BlendMode.srcIn,
-                  shaderCallback: (Rect bounds) {
-                    return const LinearGradient(
-                      colors: [
-                        Color(0xFF6EE2F5),
-                        Color(0xFF6454F0),
-                      ],
-                    ).createShader(bounds);
-                  },
-                  child: ImageIcon(
-                    AssetImage(filledIcon),
-                  ),
-                )
-              : ImageIcon(
-                  AssetImage(normalIcon),
-                  color: Colors.grey,
-                ),
+              // ? ShaderMask(
+              //     blendMode: BlendMode.srcIn,
+              //     shaderCallback: (Rect bounds) {
+              //       return const LinearGradient(
+              //         colors: [
+              //           Color(0xFF6EE2F5),
+              //           Color(0xFF6454F0),
+              //         ],
+              //       ).createShader(bounds);
+              //     },
+              //     child: ImageIcon(
+              //       AssetImage(filledIcon),
+              //     ),
+              //   )
+              ? SvgPicture.asset(filledIcon)
+              // : ImageIcon(
+              //     AssetImage(normalIcon),
+              //     color: Colors.grey,
+              //   ),
+              : SvgPicture.asset(normalIcon),
 
           (DashboardController.to.currentIndex.value == index)
               ?

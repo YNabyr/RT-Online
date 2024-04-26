@@ -32,8 +32,8 @@ class ButtonGradientDataWarga extends StatelessWidget {
           ),
           child: Container(
             width: 382.w,
-            height: 54.w,
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16).w,
+            height: 54.h,
+            padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 16.w),
             child: Align(
               alignment: Alignment.center,
               child: Text(

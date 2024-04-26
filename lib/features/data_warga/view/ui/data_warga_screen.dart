@@ -1,13 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:venturo_core/configs/routes/route.dart';
+import 'package:venturo_core/features/data_blok/controllers/data_blok_controller.dart';
+import 'package:venturo_core/features/data_blok/view/components/card_data_blok.dart';
+import 'package:venturo_core/features/data_blok/view/components/header_admin_data_blok.dart';
+import 'package:venturo_core/features/data_blok/view/components/search_bar_admin_data_blok.dart';
 
 import 'package:venturo_core/features/data_warga/constants/data_warga_assets_constant.dart';
 import 'package:venturo_core/features/data_warga/controllers/data_warga_controller.dart';
+import 'package:venturo_core/features/data_warga/models/penduduk.dart';
+import 'package:venturo_core/features/data_warga/view/components/data_warga_bottomsheet.dart';
 import 'package:venturo_core/features/data_warga/view/components/data_warga_card.dart';
 import 'package:venturo_core/features/data_warga/view/components/header_data_warga.dart';
 import 'package:venturo_core/features/data_warga/view/components/search_bar_data_warga.dart';
+import 'package:venturo_core/shared/controllers/global_vairable.dart';
 import 'package:venturo_core/shared/styles/google_text_style.dart';
 
 class DataWargaScreen extends StatelessWidget {
@@ -15,222 +25,195 @@ class DataWargaScreen extends StatelessWidget {
 
   final assetsConstant = DataWargaAssetsConstant();
 
+  static const boxShadow = BoxShadow(
+    color: Color(0x19000000),
+    blurRadius: 8,
+    offset: Offset(4, 3),
+    spreadRadius: 0,
+  );
+  var controller = DataWargaController.to;
   @override
   Widget build(BuildContext context) {
-    // List A
-    List<DataWargaCard> listDataWargaA = [];
-    for (int i = 0; i < 10; i++) {
-      listDataWargaA.add(
-        const DataWargaCard(
-          profileBadge: "A-20",
-          profileImage:
-              "https://i.pinimg.com/236x/18/f3/6d/18f36d3c70be9d4fae7256335d1cdf90.jpg",
-          profileName: "Ahmad Subardji",
-          profileNumber: "0890876542",
-        ),
-      );
-    }
+    return Obx(
+      () => DefaultTabController(
+        length: DataBlokController.to.listBlok.length,
+        child: Scaffold(
+          backgroundColor: const Color(0xffEFF0F5),
+          body: (DataBlokController.to.isLoading.value == true)
+              ? const CircularProgressIndicator()
+              : Column(
+                  children: [
+                    // Stack
+                    Stack(
+                      children: [
+                        // Header
+                        const HeaderAdminDataBlok(
+                          title: "Data Warga",
+                        ),
 
-    // List B
-    List<DataWargaCard> listDataWargaB = [];
-    for (int i = 0; i < 20; i++) {
-      listDataWargaB.add(
-        const DataWargaCard(
-          profileBadge: "A-20",
-          profileImage:
-              "https://i.pinimg.com/236x/18/f3/6d/18f36d3c70be9d4fae7256335d1cdf90.jpg",
-          profileName: "Ahmad Subardji",
-          profileNumber: "0890876542",
-        ),
-      );
-    }
-
-    // List C
-    List<DataWargaCard> listDataWargaC = [];
-    for (int i = 0; i < 12; i++) {
-      listDataWargaC.add(
-        const DataWargaCard(
-          profileBadge: "A-20",
-          profileImage:
-              "https://i.pinimg.com/236x/18/f3/6d/18f36d3c70be9d4fae7256335d1cdf90.jpg",
-          profileName: "Ahmad Subardji",
-          profileNumber: "0890876542",
-        ),
-      );
-    }
-
-    // List D
-    List<DataWargaCard> listDataWargaD = [];
-    for (int i = 0; i < 5; i++) {
-      listDataWargaD.add(
-        const DataWargaCard(
-          profileBadge: "A-20",
-          profileImage:
-              "https://i.pinimg.com/236x/18/f3/6d/18f36d3c70be9d4fae7256335d1cdf90.jpg",
-          profileName: "Ahmad Subardji",
-          profileNumber: "0890876542",
-        ),
-      );
-    }
-
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        backgroundColor: const Color(0xffeff0f5),
-        body: Column(
-          children: [
-            // Stack
-            Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Container(
-                  height: 135.w,
-                ),
-                // Topbar
-                const HeaderDataWarga(text: "Data Warga"),
-
-                // Search Bar
-                const Positioned(bottom: 0, child: SearchBarDataWarga()),
-              ],
-            ),
-
-            24.verticalSpace,
-
-            SizedBox(
-              width: 382.w,
-              child: Obx(
-                () => TabBar(
-                  dividerColor: Colors.grey,
-                  dividerHeight: 2.w,
-                  indicatorWeight: 2.w,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  indicatorColor: const Color(0xFF6454F0),
-                  onTap: (x) {
-                    DataWargaController.to.currentIndex.value = x;
-                  },
-                  tabs: <Widget>[
-                    Tab(
-                      child:
-                          buildTab(text: "Blok A", text2: "10 Warga", index: 0),
+                        // Search Bar
+                        Container(
+                          margin:
+                              EdgeInsets.only(top: 78.h + safePadding(context)),
+                          child: const Center(child: SearchBarAdminDataBlok()),
+                        ),
+                      ],
                     ),
-                    Tab(
-                      child:
-                          buildTab(text: "Blok B", text2: "20 Warga", index: 1),
+
+                    25.verticalSpace,
+
+                    // Tabbar
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: TabBar(
+                          tabAlignment: TabAlignment.start,
+                          isScrollable: true,
+                          dividerColor: Colors.grey,
+                          dividerHeight: 2.h,
+                          indicatorWeight: 2.w,
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          indicatorColor: const Color(0xFF6454F0),
+                          labelColor: const Color(0xFF6454F0),
+                          unselectedLabelColor: const Color(0xff9597A3),
+                          tabs: [
+                            for (var i = 0;
+                                i < DataBlokController.to.listBlok.length;
+                                i++)
+                              Obx(
+                                () => Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 6.w),
+                                  child: Tab(
+                                    child: buildTab(
+                                        text:
+                                            "Blok ${DataBlokController.to.listBlok[i]['name']}",
+                                        warga: DataBlokController
+                                            .to
+                                            .filteredHouseIds[i]['list_id']
+                                            .length),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
                     ),
-                    Tab(
-                      child:
-                          buildTab(text: "Blok C", text2: "12 Warga", index: 2),
-                    ),
-                    Tab(
-                      child:
-                          buildTab(text: "Blok D", text2: "5 Warga", index: 3),
-                    ),
+
+                    19.verticalSpace,
+
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          for (var i = 0;
+                              i < DataBlokController.to.listBlok.length;
+                              i++)
+                            Obx(
+                              () => ListView.builder(
+                                padding: EdgeInsets.zero,
+                                itemCount: DataBlokController
+                                    .to.filteredHouseIds[i]["list_id"].length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return DataWargaCard(
+                                    profileImage: DataWargaController
+                                        .to.listPenduduk[index]["photo_url"],
+                                    profileName: DataWargaController
+                                        .to.listPenduduk[index]["name"],
+                                    profileBadge: DataBlokController
+                                        .to
+                                        .filteredHouseIds[i]['list_house']
+                                            [index]
+                                        .toString(),
+                                    houseId: DataBlokController.to
+                                        .filteredHouseIds[i]['list_id'][index],
+                                    hasData: DataBlokController.to.isHouseValid(
+                                        DataBlokController
+                                            .to
+                                            .filteredHouseIds[i]['list_id']
+                                                [index]
+                                            .toString()),
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (ctx) {
+                                          var houseId = DataBlokController
+                                                  .to.filteredHouseIds[i]
+                                              ['list_id'][index];
+                                          return DataWargaBottomsheet(
+                                            badge: DataBlokController
+                                                .to
+                                                .filteredHouseIds[i]
+                                                    ['list_house'][index]
+                                                .toString(),
+                                            image: DataWargaController
+                                                .to.listPenduduk
+                                                .where((citizen) =>
+                                                    citizen['house_id'] ==
+                                                    houseId!)
+                                                .map((e) => e['photo_url'])
+                                                .elementAt(0)
+                                                .toString(),
+                                            name: DataWargaController
+                                                .to.listPenduduk
+                                                .where((citizen) =>
+                                                    citizen['house_id'] ==
+                                                    houseId!)
+                                                .map((e) => e['name'])
+                                                .elementAt(0)
+                                                .toString(),
+                                            birth: DataWargaController
+                                                .to.listPenduduk
+                                                .where((citizen) =>
+                                                    citizen['house_id'] ==
+                                                    houseId!)
+                                                .map((e) => e['date_of_birth'])
+                                                .elementAt(0)
+                                                .toString(),
+                                            phone: DataWargaController
+                                                .to.listPenduduk
+                                                .where((citizen) =>
+                                                    citizen['house_id'] ==
+                                                    houseId!)
+                                                .map((e) => e['phone_number'])
+                                                .elementAt(0)
+                                                .toString(),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
-              ),
-            ),
-
-            19.verticalSpace,
-
-            Expanded(
-              child: SizedBox(
-                child: TabBarView(
-                  children: <Widget>[
-                    // Blok A
-                    ListView.builder(
-                      padding:
-                          EdgeInsetsDirectional.symmetric(horizontal: 24.w),
-                      itemCount: listDataWargaA.length,
-                      itemBuilder: (context, index) {
-                        return DataWargaCard(
-                          profileImage: listDataWargaA[index].profileImage,
-                          profileName: listDataWargaA[index].profileName,
-                          profileNumber: listDataWargaA[index].profileNumber,
-                          profileBadge: listDataWargaA[index].profileBadge,
-                        );
-                      },
-                    ),
-
-                    // Blok B
-                    ListView.builder(
-                      padding:
-                          EdgeInsetsDirectional.symmetric(horizontal: 24.w),
-                      itemCount: listDataWargaB.length,
-                      itemBuilder: (context, index) {
-                        return DataWargaCard(
-                          profileImage: listDataWargaB[index].profileImage,
-                          profileName: listDataWargaB[index].profileName,
-                          profileNumber: listDataWargaB[index].profileNumber,
-                          profileBadge: listDataWargaB[index].profileBadge,
-                        );
-                      },
-                    ),
-
-                    // Blok C
-                    ListView.builder(
-                      padding:
-                          EdgeInsetsDirectional.symmetric(horizontal: 24.w),
-                      itemCount: listDataWargaC.length,
-                      itemBuilder: (context, index) {
-                        return DataWargaCard(
-                          profileImage: listDataWargaC[index].profileImage,
-                          profileName: listDataWargaC[index].profileName,
-                          profileNumber: listDataWargaC[index].profileNumber,
-                          profileBadge: listDataWargaC[index].profileBadge,
-                        );
-                      },
-                    ),
-
-                    // Blok D
-                    ListView.builder(
-                      padding:
-                          EdgeInsetsDirectional.symmetric(horizontal: 24.w),
-                      itemCount: listDataWargaD.length,
-                      itemBuilder: (context, index) {
-                        return DataWargaCard(
-                          profileImage: listDataWargaD[index].profileImage,
-                          profileName: listDataWargaD[index].profileName,
-                          profileNumber: listDataWargaD[index].profileNumber,
-                          profileBadge: listDataWargaD[index].profileBadge,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );
   }
 
-  Widget buildTab({
-    required String text,
-    required String text2,
-    required int index,
-  }) {
+  Column buildTab({required String text, int? warga}) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // Text
         Text(
           text,
           style: NunitoTextStyle.fw700.copyWith(
-            color: (DataWargaController.to.currentIndex.value == index)
-                ? const Color(0xFF6454F0)
-                : Colors.grey,
             fontSize: 16.sp,
           ),
         ),
+
+        // jumlah Warga
         Text(
-          text2,
+          '${(warga == null) ? 0 : warga} Warga',
           style: NunitoTextStyle.fw500.copyWith(
-            color: (DataWargaController.to.currentIndex.value == index)
-                ? const Color(0xFF6454F0)
-                : Colors.grey,
             fontSize: 10.sp,
           ),
-        )
+        ),
       ],
     );
   }

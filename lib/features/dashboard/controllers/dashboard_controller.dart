@@ -1,8 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:venturo_core/configs/routes/route.dart';
 import 'package:venturo_core/features/beranda/view/ui/beranda_screen.dart';
+import 'package:venturo_core/features/informasi/bindings/informasi_binding.dart';
 import 'package:venturo_core/features/informasi/view/ui/tata_tertib_list_screen.dart';
+import 'package:venturo_core/features/iuran_warga/bindings/iuran_warga_binding.dart';
 import 'package:venturo_core/features/iuran_warga/view/ui/iuran_warga_screen.dart';
+import 'package:venturo_core/features/struktur_rt/bindings/struktur_rt_binding.dart';
 import 'package:venturo_core/features/struktur_rt/view/ui/struktur_rt_screen.dart';
+
+import '../../beranda/bindings/beranda_binding.dart';
 
 class DashboardController extends GetxController {
   static DashboardController get to => Get.find();
@@ -11,10 +18,17 @@ class DashboardController extends GetxController {
 
   final main = [
     BerandaScreen(),
-    const TataTertibListScreen(),
+    TataTertibListScreen(),
     IuranWargaScreen(),
     StrukturRtScreen(),
   ];
+
+  // final bindings = [
+  //   BerandaBinding(),
+  //   InformasiBinding(),
+  //   IuranWargaBinding(),
+  //   StrukturRtBinding(),
+  // ];
 
   void changePage(int index) {
     currentIndex.value = index;
@@ -22,20 +36,20 @@ class DashboardController extends GetxController {
 
   List<List<String>> icon = [
     [
-      'assets/images/ic_home.png',
-      'assets/images/ic_home_fill.png',
+      'assets/outline/home.svg',
+      'assets/fill/home.svg',
     ],
     [
-      'assets/images/ic_tertib.png',
-      'assets/images/ic_tertib_fill.png',
+      'assets/outline/Tertib.svg',
+      'assets/fill/Tertib.svg',
     ],
     [
-      'assets/images/ic_iuran.png',
-      'assets/images/ic_iuran_fill.png',
+      'assets/outline/Iuran.svg',
+      'assets/fill/Iuran.svg',
     ],
     [
-      'assets/images/ic_struktur.png',
-      'assets/images/ic_struktur_fill.png',
+      'assets/outline/Structure.svg',
+      'assets/fill/Structure.svg',
     ],
   ];
 }

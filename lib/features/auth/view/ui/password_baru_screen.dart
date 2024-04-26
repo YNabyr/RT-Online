@@ -30,7 +30,7 @@ class PasswordBaruScreen extends StatelessWidget {
             label: "Password Baru",
             hint: "Masukkan Password",
             keyboardType: TextInputType.visiblePassword,
-            suffixIcon: "assets/images/ic_eye_off.png",
+            suffixIcon: "assets/outline/eye-off.svg",
           ),
 
           15.verticalSpace,
@@ -40,7 +40,7 @@ class PasswordBaruScreen extends StatelessWidget {
             label: "Konfirmasi Password Baru",
             hint: "Masukkan Password",
             keyboardType: TextInputType.visiblePassword,
-            suffixIcon: "assets/images/ic_eye_off.png",
+            suffixIcon: "assets/outline/eye-off.svg",
           ),
 
           29.verticalSpace,

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:venturo_core/configs/routes/route.dart';
+import 'package:venturo_core/features/admin_undang_warga/view/components/dropdown_admin_undang_warga.dart';
+import 'package:venturo_core/features/auth/controllers/auth_controller.dart';
+import 'package:venturo_core/features/profile/controllers/profile_controller.dart';
 import 'package:venturo_core/features/profile/view/components/bottom_sheet_edit_profile.dart';
 import 'package:venturo_core/features/profile/view/components/button_gradient_profile.dart';
 import 'package:venturo_core/features/profile/view/components/drop_down_edit_profile.dart';
@@ -8,14 +13,14 @@ import 'package:venturo_core/features/profile/view/components/text_field_edit_pr
 import 'package:venturo_core/features/profile/view/components/top_bar_profile.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+  EditProfileScreen({super.key});
+
+  var args = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
-    // Demo Controller
-    TextEditingController controller = TextEditingController();
-    TextEditingController controller2 = TextEditingController();
     return Scaffold(
+      backgroundColor: const Color(0xffeff0f5),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -25,8 +30,15 @@ class EditProfileScreen extends StatelessWidget {
             32.verticalSpace,
 
             // Profile Card
-            const ProfileCard(
+            ProfileCard(
               isEdit: true,
+              photo: args['photo_url'],
+              name: args['name'],
+              badge: ProfileController.to.badge.value,
+              perumahan: args['date_of_birth'],
+              onTap: () {
+                ProfileController.to.showImagePickerBottomSheet(context);
+              },
             ),
 
             43.verticalSpace,
@@ -34,10 +46,11 @@ class EditProfileScreen extends StatelessWidget {
             // TextField
             // No. KK
             TextFieldEditProfile(
+              controller: ProfileController.to.controllerNoKK.value,
               label: "No. KK",
               hint: "Masukkan No. KK",
               textInputType: TextInputType.number,
-              icon: "assets/images/ic_image.png",
+              icon: "assets/outline/image.svg",
               onTap: () {
                 showBottomSheetEdit(
                   context,
@@ -53,8 +66,9 @@ class EditProfileScreen extends StatelessWidget {
 
             // NIK
             TextFieldEditProfile(
+              controller: ProfileController.to.controllerNoNIK.value,
               hint: "Masukkan NIK",
-              icon: "assets/images/ic_image.png",
+              icon: "assets/outline/image.svg",
               label: "NIK",
               textInputType: TextInputType.number,
               onTap: () {
@@ -71,9 +85,10 @@ class EditProfileScreen extends StatelessWidget {
             20.verticalSpace,
 
             // Pekerjaan
-            const TextFieldEditProfile(
+            TextFieldEditProfile(
+              controller: ProfileController.to.controllerPekerjaan.value,
               hint: "Masukkan Pekerjaan",
-              icon: "assets/images/ic_edit.png",
+              icon: "assets/outline/edit.svg",
               label: "Pekerjaan",
               textInputType: TextInputType.text,
             ),
@@ -82,9 +97,11 @@ class EditProfileScreen extends StatelessWidget {
 
             // Tempat tanggal lahir
             TextFieldEditProfile(
-              controller: controller,
+              controller: ProfileController.to.controllerTanggalLahir.value,
               hint: 'Masukkan Tempat, Tanggal Lahir',
-              icon: "assets/images/ic_calendar.png",
+              icon: "assets/outline/calendar.svg",
+              colorFilter:
+                  const ColorFilter.mode(Colors.black, BlendMode.srcIn),
               label: "Tempat, Tanggal Lahir",
               textInputType: TextInputType.text,
               onTap: () async {
@@ -96,7 +113,7 @@ class EditProfileScreen extends StatelessWidget {
                 );
 
                 if (selectedDate != null) {
-                  controller.text =
+                  ProfileController.to.controllerTanggalLahir.value.text =
                       "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
                 }
               },
@@ -105,20 +122,28 @@ class EditProfileScreen extends StatelessWidget {
             20.verticalSpace,
 
             // Jenis Kelamin
-            DropDownEditProfile(
-              hint: "Masukkan Jenis Kelamin",
-              label: "Jenis Kelamin",
-              icon: "assets/images/ic_arrow_ios_down.png",
-              textInputType: TextInputType.text,
-              controller: controller2,
+            Obx(
+              () => DropdownAdminUndangWarga(
+                label: "Jenis Kelamin",
+                hint: "Pilih Jenis Kelamin",
+                value: (ProfileController.to.selectedGender.value == '')
+                    ? null
+                    : ProfileController.to.selectedGender.value,
+                dropdownItems: const ["Laki-laki", "Perempuan"],
+                onChanged: (value) {
+                  ProfileController.to.selectedGender.value = value!;
+                },
+                onMenuStateChange: (onChange) {},
+              ),
             ),
 
             20.verticalSpace,
 
             // Agama
-            const TextFieldEditProfile(
+            TextFieldEditProfile(
+              controller: ProfileController.to.controllerAgama.value,
               hint: "Masukkan Agama",
-              icon: "assets/images/ic_edit.png",
+              icon: "assets/outline/edit.svg",
               label: "Agama",
               textInputType: TextInputType.text,
             ),
@@ -126,9 +151,10 @@ class EditProfileScreen extends StatelessWidget {
             20.verticalSpace,
 
             // No. Handphone
-            const TextFieldEditProfile(
+            TextFieldEditProfile(
+              controller: ProfileController.to.controllerNoHandphone.value,
               hint: "Masukkan No. Handphone",
-              icon: "assets/images/ic_edit.png",
+              icon: "assets/outline/edit.svg",
               label: "No. Handphone",
               textInputType: TextInputType.phone,
             ),
@@ -138,7 +164,11 @@ class EditProfileScreen extends StatelessWidget {
             // Button Simpan
             ButtonGradientProfile(
               text: "Simpan",
-              onPressed: () {},
+              onPressed: () async {
+                await ProfileController.to.editProfile();
+                await ProfileController.to.getUserInfo();
+                Get.toNamed(Routes.dashboardRoute);
+              },
             ),
 
             25.verticalSpace
@@ -163,10 +193,11 @@ class EditProfileScreen extends StatelessWidget {
         return SizedBox(
           height: MediaQuery.of(context).viewInsets.bottom + sheetHeight,
           child: BottomSheetEditProfile(
+            isTextFieldOn: true,
             label: label,
             hint: "Masukkan No. KK",
             textInputType: TextInputType.number,
-            icon: "assets/images/ic_edit.png",
+            icon: "assets/outline/edit.svg",
             text: (text != null) ? text : "null",
           ),
         );
